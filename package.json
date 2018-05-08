@@ -6,7 +6,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --ignore 'public/config/env.js' server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "angular-cookies": "^1.6.4",
