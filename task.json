@@ -1,0 +1,17 @@
+{
+	"version": "0.1.0",
+	"windows": {
+		"command": ".\\node_modules\\.bin\\eslint"
+	},
+	"linux": {
+		"command": "./node_modules/.bin/eslint"
+	},
+	"osx": {
+		"command": "./node_modules/.bin/eslint"
+	},
+	"isShellCommand": true,
+	"args": ["*.js"],
+	"showOutput": "silent",
+	"problemMatcher": "$eslint-stylish",
+	"autoFixOnSave" : true
+}

@@ -1,0 +1,33 @@
+{
+  "name": "test",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --ignore 'public/config/env.js' server.js"
+  },
+  "dependencies": {
+    "angular-cookies": "^1.6.4",
+    "angular-wizard": "^0.10.0",
+    "angularjs-scroll-glue": "^2.2.0",
+    "assert": "^1.4.1",
+    "body-parser": "~1.10.1",
+    "express": "^4.16.3",
+    "http-server": "^0.10.0",
+    "nodemon": "^1.12.1"
+  },
+  "description": "my api-test consumer",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseAlvarezHernandez/test-web.git"
+  },
+  "author": "Jose de Jesus Alvarez Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseAlvarezHernandez/test-web/issues"
+  },
+  "homepage": "https://github.com/JoseAlvarezHernandez/test-web#readme"
+}

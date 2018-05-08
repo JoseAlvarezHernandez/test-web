@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact Center Web</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="CACHE-CONTROL" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <link rel="icon" href="https://fintech.broxel.com/Themes/OnlineBroxel/images/General/favicon.ico" type="image/x-icon">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css 
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" />
+    -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/login.css">
+  <link rel="stylesheet" href="styles/user.css">
+  <link rel="stylesheet" href="styles/chat.css">
+  <link rel="stylesheet" href="styles/config.css">
+  <link rel="stylesheet" href="styles/modal.css">
+  <link rel="stylesheet" href="styles/analytics.css">
+  <link rel="stylesheet" href="styles/datetimepicker.css">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="moneyWeb">
+  <!--[if lte IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+  <!-- Add your site or application content here -->
+  <div class="container-fluid">
+    <div class="row" ng-include="'views/header.html'"></div>
+    <div ng-view=""></div>
+  </div>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script> -->
+  <script src="scripts/js/chart.js"></script>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="scripts/js/bootbox.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.10.2/bodymovin.js"></script>
+  <script src="scripts/js/moment.js"></script>
+  <script src="scripts/js/datetimepicker.js"></script>
+  <script src="scripts/js/utilities.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/app.routes.js"></script>
+  <script src="scripts/app.config.js"></script>
+  <script src="scripts/shared/resource.js"></script>
+  <script src="scripts/shared/utils.js"></script>
+  <script src="scripts/shared/bot.js"></script>
+  <script src="scripts/shared/http.factory.js"></script>
+  <script src="scripts/shared/userListFilter.js"></script>
+
+
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/controllers/user.js"></script>
+  <script src="scripts/controllers/admin.js"></script>
+  <script src="scripts/controllers/header.js"></script>
+  <script src="scripts/controllers/config.js"></script>
+  <script src="scripts/controllers/analytics.js"></script>
+  <!-- endbuild -->
+</body>
+
+</html>
