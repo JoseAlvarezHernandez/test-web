@@ -5,7 +5,7 @@
 ```
 
 ```sh
- npm run postinstall
+ bower install
 ```
 
 ```sh
