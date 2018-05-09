@@ -5,7 +5,7 @@
 ```
 
 ```sh
- npm postinstall
+ npm run postinstall
 ```
 
 ```sh
