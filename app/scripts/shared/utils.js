@@ -9,18 +9,17 @@ Utils.$inject = ['$window'];
 function Utils($window) {
     let isTokenExpired = false;
     return {
-        orderBy: orderBy,
-        validateEmail: validateEmail,
-        validateFieldEmpty: validateFieldEmpty,
-        getInitials: getInitials,
-        getActions: getActions,
-        buildUser: buildUser,
-        modalLogin: modalLogin,
-        handlerTokenExpired: handlerTokenExpired,
-        compareObjects: compareObjects,
-        tokenExpired: tokenExpired,
-        getTokenExpired: getTokenExpired,
+        orderBy,
+        validateEmail,
+        validateFieldEmpty,
+        buildUser,
+        compareObjects,
+        validatePhone
     };
+
+    function validatePhone(phone) {
+        return /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/img.test(phone);
+    }
     function getTokenExpired() {
         return isTokenExpired;
     }
@@ -133,24 +132,13 @@ function Utils($window) {
         reverse = (property === property) ? !reverse : false;
         return reverse;
     }
+
     function validateEmail(email) {
-        const emailR = /^\w+([\.\-\+]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,4})+$/;
-        if (emailR.test(email)) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return /^\w+([\.\-\+]?\w+)*@\w+([\.\-]?\w+)*(\.\w{2,4})+$/.test(email);
     }
+
     function validateFieldEmpty(field) {
-        const fieldR = /([^\s])/;
-        if (field == null) {
-            return true;
-        } else if (fieldR.test(field)) {
-            return false;
-        } else {
-            return true;
-        }
+        return /([^\s])/img.test(field);
     }
 
     function validateFormPassword(email, change, dialog) {

@@ -11,21 +11,48 @@ Resource.$inject = ['$http', 'env'];
  */
 function Resource($http, env) {
     return {
-        updateCountingConversation,
+        validateEmail,
+        login,
+        registration
     };
-    function updateCountingConversation(userId, value) {
+
+    function validateEmail(email) {
         let http = {
-            method: 'PUT',
-            url: `${env.apiIntercom}/api/users/${userId}/conversations`,
+            method: 'GET',
+            url: `${env.api}authentication/validate/${email}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': localStorage.getItem('bearer'),
+                'Accept': 'application/json'
+            }
+        }
+        return $http(http).then(response => response.data);
+    }
+
+    function login(username, password) {
+        let http = {
+            method: 'POST',
+            url: `${env.api}authentication/login`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             data: {
-                minus: value,
+                username, password
             },
         };
-        return ($http(http));
+        return $http(http);
+    }
+
+    function registration(data) {
+        let http = {
+            method: 'POST',
+            url: `${env.api}users`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data
+        };
+        return $http(http);
     }
 }

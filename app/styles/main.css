@@ -109,7 +109,12 @@ div.content-agents > div:nth-of-type(even) {
 .circle-wait{
   background-color: #FAA8B3;
 }
+.error{
+  color: #FAA8B3;
+} 
+.message{
 
+}
 .circle-no-active{
   background-color: #C0C7CC;
 }

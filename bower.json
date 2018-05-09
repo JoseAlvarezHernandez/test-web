@@ -1,0 +1,31 @@
+{
+  "name": "test",
+  "description": "my api-test consumer",
+  "main": "server.js",
+  "authors": [
+    "Jose de Jesus Alvarez Hernandez"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/JoseAlvarezHernandez/test-web",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "directory": "app",
+  "dependencies": {
+    "angular": "^1.6.10",
+    "angular-animate": "^1.6.10",
+    "angular-cookies": "^1.6.10",
+    "angular-messages": "^1.6.10",
+    "angular-resource": "^1.6.10",
+    "angular-route": "^1.6.10",
+    "angular-sanitize": "^1.6.10",
+    "angular-touch": "^1.6.10",
+    "bootstrap": "^4.1.1",
+    "fusioncharts": "^3.12.2",
+    "jquery": "^3.3.1"
+  }
+}

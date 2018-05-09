@@ -2,5 +2,5 @@ angular
   .module('moneyWeb')
   .constant('env', {
     // URLS
-    apiIntercom: 'https://broxel-intercom-api.azurewebsites.net',
+    api: 'https://inncol-test-api.herokuapp.com/api/',
   });

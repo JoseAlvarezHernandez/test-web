@@ -11,21 +11,22 @@ angular
   .module('moneyWeb')
   .controller('LoginController', LoginController);
 
-LoginController.$inject = ['Resource', 'Utils', '$window'];
+LoginController.$inject = ['Resource', 'Utils', '$scope'];
 
 /**
  * @function LoginController
  */
-function LoginController(Resource, Utils, $window) {
+function LoginController(Resource, Utils, $scope) {
   const vm = this;
   //variables
   vm.isLogged = localStorage.getItem('isLogged') == null ? false : localStorage.getItem('isLogged');
   vm.userId = localStorage.getItem('userId');
   //vm.status = localStorage.getItem('status');
-  vm.loginData = {
-    username: '',
-    password: ''
-  };
+  vm.loginData = { username: '', password: '' };
+  vm.submitValue = 'Next';
+  vm.doLogin = false;
+  vm.doRegistration = false;
+  vm.errorMessage = '';
 
   //functions
   vm.login = login;
@@ -44,72 +45,69 @@ function LoginController(Resource, Utils, $window) {
   }
 
   function login() {
-    let username = $("#username"),
-      password = $("#password"),
-      error = false;
+    let error = false;
 
-    const inputs = [
-      { input: password, status: !Utils.validateFieldEmpty(vm.loginData.password), },
-      { input: username, status: (!Utils.validateFieldEmpty(vm.loginData.username) && !Utils.validateEmail(vm.loginData.username)) }
-    ];
+    const inputs = getInputs();
 
     error = animateInput(inputs);
-
     if (error) {
       vm.error = 'Por favor llene los campos correctamente.';
       setTimeout(function () {
-        username.removeClass('alert-effect');
-        password.removeClass('alert-effect');
+        inputs.map(input => input.input.removeClass('alert-effect'));
       }, 500);
       return false;
     } else {
-      sendLogin(vm.loginData);
+      if (!vm.doRegistration && !vm.doLogin)
+        validateEmail(vm.loginData.username);
+      else if (vm.doRegistration)
+        sendRegistration(vm.loginData);
+      else if (vm.doLogin)
+        sendLogin(vm.loginData);
     }
   }
 
-  function sendLogin(loginData) {
-    Resource.contactCenterLogin(loginData).then((data) => {
-      if (data.data && data.data.name && data.status == 200) {
-        localStorage.setItem('bearer', `Bearer ${data.data.token}`);
-        localStorage.setItem('isLogged', true);
-        localStorage.setItem('name', data.data.name);
-        localStorage.setItem('email', data.data.email);
-        localStorage.setItem('userId', data.data.userId);
-        localStorage.setItem('conversations', data.data.conversations);
-        localStorage.setItem('status', 1);
+  async function validateEmail(email) {
+    const user = await Resource.validateEmail(email);
+    if (user.exists)
+      $scope.$apply(() => { vm.doLogin = true; vm.submitValue = 'Login'; });
+    else
+      $scope.$apply(() => { vm.doRegistration = true; vm.submitValue = 'Register'; });
+  }
 
-        //save data from privileges
-        let localPrivileges = data.data.privileges;
-        for (let prop in localPrivileges.actions) {
-          localStorage.setItem('action.' + prop, localPrivileges.actions[prop]);
-          localStorage.setItem(prop, localPrivileges.actions[prop]);
-        }
+  function sendRegistration(loginData) {
 
-        localStorage.setItem('type', localPrivileges.type);
-        localStorage.setItem('app', localPrivileges.app);
-        vm.isLogged = true;
-        //default values
-        vm.loginData.password = '';
-        vm.error = ''
-        let role = localPrivileges.type;
-        changeStatus(localStorage.getItem('userId'), 1);
+  }
 
-        if (role < 0 || role > 3) {
-          vm.error = 'Ocurrió un error en la petición.';
-          localStorage.clear();
-        }
+  async function sendLogin(loginData) {
+    const { username, password } = loginData
+    const session = await Resource.login(username, password);
+    if (session.status == 200)
+      console.log(session.status);
+    else
+      $scope.$apply(() => vm.errorMessage = session.data.message);
+  }
 
-        $window.location.href = role == 0 ? '#!/admin' : role == 1 ? '#!/admin' : role == 2 ? '#!/user' : '#!/';
+  function getInputs() {
+    let username = $('#username'),
+      password = $('#password'),
+      name = $('#name'),
+      phone = $('#phone'),
+      inputs = [
+        { input: username, status: (Utils.validateFieldEmpty(vm.loginData.username) && Utils.validateEmail(vm.loginData.username)) }
+      ];
+    if (vm.doLogin)
+      inputs = [
+        ...inputs,
+        { input: password, status: Utils.validateFieldEmpty(vm.loginData.password) }
+      ];
+    else if (vm.doRegistration)
+      inputs = [
+        ...inputs,
+        { input: password, status: Utils.validateFieldEmpty(vm.loginData.password) },
+        { input: name, status: Utils.validateFieldEmpty(vm.loginData.name) },
+        { input: phone, status: (Utils.validateFieldEmpty(vm.loginData.phone) && Utils.validatePhone(vm.loginData.phone)) }
+      ];
 
-      } else {
-        switch (data.status) {
-          case 401:
-            vm.error = 'Usuario y/o contraseña erroneos.'
-            break;
-        }
-      }
-    }).catch(function (data) {
-      vm.error = 'Ocurrió un error en la petición. Consulta al administrador del sitio';
-    });
+    return inputs;
   }
 }

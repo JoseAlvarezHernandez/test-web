@@ -3,7 +3,7 @@ let express = require('express');
 let app = express();
 let routes = require('./routes');
 let bodyParser = require('body-parser');
-let port = process.env.PORT || 1339;
+let port = process.env.PORT || 1340;
 // Set express rules
 app.use(bodyParser.urlencoded({
   extended: false,
