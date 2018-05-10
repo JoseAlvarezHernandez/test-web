@@ -13,7 +13,8 @@ function Resource($http, env) {
     return {
         validateEmail,
         login,
-        registration
+        registration,
+        getUsers,
     };
 
     function validateEmail(email) {
@@ -52,6 +53,19 @@ function Resource($http, env) {
                 'Accept': 'application/json'
             },
             data
+        };
+        return $http(http);
+    }
+
+    function getUsers(token, email){
+        let http = {
+            method: 'GET',
+            url: `${env.api}users/${email}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${{token}}`,
+            }
         };
         return $http(http);
     }
