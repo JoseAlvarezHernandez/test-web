@@ -11,12 +11,12 @@ angular
   .module('moneyWeb')
   .controller('LoginController', LoginController);
 
-LoginController.$inject = ['Resource', 'Utils', '$scope'];
+LoginController.$inject = ['Resource', 'Utils', '$scope', '$location'];
 
 /**
  * @function LoginController
  */
-function LoginController(Resource, Utils, $scope) {
+function LoginController(Resource, Utils, $scope, $location) {
   const vm = this;
   //variables
   vm.isLogged = localStorage.getItem('isLogged') == null ? false : localStorage.getItem('isLogged');
@@ -74,15 +74,20 @@ function LoginController(Resource, Utils, $scope) {
       $scope.$apply(() => { vm.doRegistration = true; vm.submitValue = 'Register'; });
   }
 
-  function sendRegistration(loginData) {
-
+  async function sendRegistration(loginData) {
+    const reg = await Resource.registration({ ...loginData, homePage: 'user' });
+    if (reg.status === 201)
+      sendLogin(loginData);
+    else
+      $scope.$apply(() => vm.errorMessage = reg.data.message);
   }
 
   async function sendLogin(loginData) {
     const { username, password } = loginData
     const session = await Resource.login(username, password);
+    console.log(session.data.homePage);
     if (session.status == 200)
-      console.log(session.status);
+      $scope.$apply(() => $location.url(session.data.homePage));
     else
       $scope.$apply(() => vm.errorMessage = session.data.message);
   }
@@ -104,7 +109,7 @@ function LoginController(Resource, Utils, $scope) {
       inputs = [
         ...inputs,
         { input: password, status: Utils.validateFieldEmpty(vm.loginData.password) },
-        { input: name, status: Utils.validateFieldEmpty(vm.loginData.name) },
+        { input: name, status: (Utils.validateFieldEmpty(vm.loginData.name) && Utils.validateOnlyLetters(vm.loginData.name)) },
         { input: phone, status: (Utils.validateFieldEmpty(vm.loginData.phone) && Utils.validatePhone(vm.loginData.phone)) }
       ];
 

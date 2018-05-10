@@ -21,3 +21,8 @@ angular
   .config(['$httpProvider', ($httpProvider) => {
     $httpProvider.interceptors.push(httpInterceptor);
   }])
+  /* 
+  .config(['$locationProvider', ($locationProvider) => {
+    $locationProvider.hashPrefix('');
+  }])
+  */
