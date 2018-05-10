@@ -84,6 +84,9 @@ function LoginController(Resource, Utils, $scope, $location) {
   async function sendLogin(loginData) {
     const { username, password } = loginData
     const session = await Resource.login(username, password);
+    console.log(session.data.homePage);
+    localStorage.setItem('token', session.data.token);
+    localStorage.setItem('email', session.data.email);
     if (session.status == 200)
       $scope.$apply(() => $location.url(session.data.homePage));
     else

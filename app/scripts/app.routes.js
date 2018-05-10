@@ -13,8 +13,8 @@ function routes($routeProvider, $locationProvider) {
       controller: 'LoginController as vm',
     })
     .when('/user', {
-      templateUrl: 'views/user.html',
-      controller: 'UserDetailController as uc',
+      templateUrl: 'views/userdetails.html',
+      controller: 'UserDetailsController as uc',
     })
     .otherwise({
       redirectTo: '/',
