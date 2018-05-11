@@ -82,10 +82,10 @@ function LoginController(Resource, Utils, $scope, $location) {
   async function sendLogin(loginData) {
     const { username, password } = loginData
     const session = await Resource.login(username, password);
-    localStorage.setItem('token', session.data.token)
-    if (session.status == 200)
+    if (session.status == 200) {
+      localStorage.setItem('token', session.data.token);
       $scope.$apply(() => $location.url(session.data.homePage));
-    else
+    } else
       $scope.$apply(() => vm.errorMessage = session.data.message);
   }
 
