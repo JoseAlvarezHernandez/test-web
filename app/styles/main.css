@@ -505,7 +505,9 @@ body {
   overflow: hidden;
   background-color: #fff;
 }
-
+.right{
+  float: right !important;
+}
 .topnav a {
   float: left;
   display: block;
