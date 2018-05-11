@@ -18,7 +18,7 @@ function routes($routeProvider, $locationProvider) {
     })
     .when('/favorites', {
       templateUrl: 'views/favorites.html',
-      controller: 'FavoritesController as au',
+      controller: 'FavoritesController as fc',
     })
     .otherwise({
       redirectTo: '/',

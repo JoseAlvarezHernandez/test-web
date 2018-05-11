@@ -1,33 +1,33 @@
 <section id="add_favorites" class="p-5 container">
-    <div class="alert alert-success" role="alert" ng-show="au.success">
-        {{au.message}}
+    <div class="alert alert-success" role="alert" ng-show="fc.success">
+        {{fc.message}}
     </div>
-    <div class="alert alert-danger" role="alert" ng-show="au.error">
+    <div class="alert alert-danger" role="alert" ng-show="fc.error">
         There was an error trying to save your favorite
     </div>
-    <form name="addFavoritesForm" novalidate ng-submit="au.addFavorites(); addFavoritesForm.$setPristine()">
+    <form name="addFavoritesForm" novalidate ng-submit="fc.addFavorites(); addFavoritesForm.$setPristine()">
         <div class="form-group">
             <label for="bank">Bank</label>
-            <input type="text" name="bank" class="form-control" ng-class="{'is-invalid': addFavoritesForm.bank.$error.required && !addFavoritesForm.bank.$pristine, 'is-valid': addFavoritesForm.bank.$valid}" id="bank" placeholder="Type here" ng-model="au.favorite.bank" required>
+            <input type="text" name="bank" class="form-control" ng-class="{'is-invalid': addFavoritesForm.bank.$error.required && !addFavoritesForm.bank.$pristine, 'is-valid': addFavoritesForm.bank.$valid}" id="bank" placeholder="Type here" ng-model="fc.favorite.bank" required>
         </div>
         <div class="form-group">
             <label for="account">Destination (Account, Card or CLABE)</label>
-            <input type="text" name="account" class="form-control" ng-class="{'is-invalid': addFavoritesForm.account.$error.required && !addFavoritesForm.account.$pristine || addFavoritesForm.account.$invalid && !addFavoritesForm.account.$pristine, 'is-valid': addFavoritesForm.account.$valid}" id="account" placeholder="* * * * * * * * * * * * * * * * * *" aria-describedby="accountHelpBlock" ng-model="au.favorite.account" ng-pattern="/^([0-9]{6}|[0-9]{16}|[0-9]{18})$/" maxlength="18" required>
+            <input type="text" name="account" class="form-control" ng-class="{'is-invalid': addFavoritesForm.account.$error.required && !addFavoritesForm.account.$pristine || addFavoritesForm.account.$invalid && !addFavoritesForm.account.$pristine, 'is-valid': addFavoritesForm.account.$valid}" id="account" placeholder="* * * * * * * * * * * * * * * * * *" aria-describedby="accountHelpBlock" ng-model="fc.favorite.account" ng-pattern="/^([0-9]{6}|[0-9]{16}|[0-9]{18})$/" maxlength="18" required>
             <small id="accountHelpBlock" class="form-text text-muted" ng-show="addFavoritesForm.account.$invalid && !addFavoritesForm.account.$pristine">
                 Your account must be 6, 16 or 20 characters long, and must not contain spaces, characters, or special characters.
             </small>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" name="name" ng-class="{'is-invalid': addFavoritesForm.name.$error.required && !addFavoritesForm.name.$pristine, 'is-valid': addFavoritesForm.name.$valid}" class="form-control" id="name" placeholder="Example Name" ng-model="au.favorite.name" required>
+            <input type="text" name="name" ng-class="{'is-invalid': addFavoritesForm.name.$error.required && !addFavoritesForm.name.$pristine, 'is-valid': addFavoritesForm.name.$valid}" class="form-control" id="name" placeholder="Example Name" ng-model="fc.favorite.name" required>
         </div>
         <div class="form-group">
             <label for="alias">Alias</label>
-            <input type="text" name="alias" class="form-control" ng-class="{'is-invalid': addFavoritesForm.alias.$error.required && !addFavoritesForm.alias.$pristine, 'is-valid': addFavoritesForm.alias.$valid}" id="alias" placeholder="Example Alias" ng-model="au.favorite.alias" required>
+            <input type="text" name="alias" class="form-control" ng-class="{'is-invalid': addFavoritesForm.alias.$error.required && !addFavoritesForm.alias.$pristine, 'is-valid': addFavoritesForm.alias.$valid}" id="alias" placeholder="Example Alias" ng-model="fc.favorite.alias" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" ng-class="{'is-invalid': addFavoritesForm.email.$error.required && !addFavoritesForm.email.$pristine || addFavoritesForm.email.$invalid && !addFavoritesForm.email.$pristine, 'is-valid': addFavoritesForm.email.$valid}" id="email" placeholder="Example@domain.com" aria-describedby="emailHelpBlock" ng-model="au.favorite.email" required>
+            <input type="email" name="email" class="form-control" ng-class="{'is-invalid': addFavoritesForm.email.$error.required && !addFavoritesForm.email.$pristine || addFavoritesForm.email.$invalid && !addFavoritesForm.email.$pristine, 'is-valid': addFavoritesForm.email.$valid}" id="email" placeholder="Example@domain.com" aria-describedby="emailHelpBlock" ng-model="fc.favorite.email" required>
             <small id="emailHelpBlock" class="form-text text-muted" ng-show="addFavoritesForm.email.$invalid && !addFavoritesForm.email.$pristine">
                 Your email is invalid
             </small>
@@ -38,7 +38,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                 </div>
-                <input type="number" name="maxAmount" class="form-control"  ng-class="{'is-invalid': addFavoritesForm.maxAmount.$error.required && !addFavoritesForm.maxAmount.$pristine || addFavoritesForm.maxAmount.$invalid && !addFavoritesForm.maxAmount.$pristine, 'is-valid': addFavoritesForm.maxAmount.$valid}" id="maxAmount" placeholder="0.00" ng-model="au.favorite.max_amount" min="1" required>
+                <input type="number" name="maxAmount" class="form-control"  ng-class="{'is-invalid': addFavoritesForm.maxAmount.$error.required && !addFavoritesForm.maxAmount.$pristine || addFavoritesForm.maxAmount.$invalid && !addFavoritesForm.maxAmount.$pristine, 'is-valid': addFavoritesForm.maxAmount.$valid}" id="maxAmount" placeholder="0.00" ng-model="fc.favorite.max_amount" min="1" required>
             </div>
         </div>
         <button type="submit" class="btn btn-primary" ng-disabled="addFavoritesForm.$invalid">Submit</button>

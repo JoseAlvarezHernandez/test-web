@@ -14,19 +14,19 @@ angular
 FavoritesController.$inject = ['Resource'];
 
 function FavoritesController(Resource){
-    const au = this;
-        au.favorite = {};
-        au.addFavorites = addFavorites;
+    const fc = this;
+        fc.favorite = {};
+        fc.addFavorites = addFavorites;
 
     function addFavorites() {
-        Resource.addFavorites(au.favorite)
+        Resource.addFavorites(fc.favorite)
             .then(function(res) {
-                au.message = res.data.message;
-                au.success = true;
-                au.favorite = {};
+                fc.message = res.data.message;
+                fc.success = true;
+                fc.favorite = {};
             })
             .catch(function(error) {
-                au.error = true;
+                fc.error = true;
             });
     }
 }
