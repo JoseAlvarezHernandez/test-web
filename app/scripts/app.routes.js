@@ -14,7 +14,7 @@ function routes($routeProvider, $locationProvider) {
     })
     .when('/user', {
       templateUrl: 'views/userdetails.html',
-      controller: 'UserController as uc',
+      controller: 'User as uc',
     })
     .when('/favorites', {
       templateUrl: 'views/favorites.html',

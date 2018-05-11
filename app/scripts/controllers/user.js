@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc function
- * @name moneyWeb.controller:UsercontrollerCtrl
+ * @name moneyWeb.controller:UserCtrl
  * @description
- * # UserdetailscontrollerCtrl
+ * # UserCtrl
  * Controller of the moneyWeb
  */
 angular
   .module('moneyWeb')
-  .controller('UserController', UserController);
+  .controller('User', User);
 
-UserController.$inject = ['Resource'];
+User.$inject = ['Resource'];
 
-function UserController(Resource){
+function User(Resource){
   var uc = this;
       uc.users = [];
 
