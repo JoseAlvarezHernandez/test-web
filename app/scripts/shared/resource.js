@@ -15,6 +15,7 @@ function Resource($http, env) {
         login,
         registration,
         getUsers,
+        addFavorites,
     };
 
     function validateEmail(email) {
@@ -66,6 +67,20 @@ function Resource($http, env) {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`,
             }
+        };
+        return $http(http);
+    }
+
+    function addFavorites(token, data) {
+        const http = {
+            method: 'PUT',
+            url: `${env.api}users/favorites`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            data
         };
         return $http(http);
     }
