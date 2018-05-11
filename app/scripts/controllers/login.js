@@ -18,10 +18,7 @@ LoginController.$inject = ['Resource', 'Utils', '$scope', '$location'];
  */
 function LoginController(Resource, Utils, $scope, $location) {
     const vm = this;
-    console.log(Utils);
     //variables
-    vm.isLogged = localStorage.getItem('isLogged') == null ? false : localStorage.getItem('isLogged');
-    vm.userId = localStorage.getItem('userId');
     vm.loginData = { username: '', password: '' };
     vm.submitValue = 'Next';
     vm.doLogin = false;
@@ -69,11 +66,15 @@ function LoginController(Resource, Utils, $scope, $location) {
     async function validateEmail(email) {
         const user = await Resource.validateEmail(email);
         if (user.exists)
-            $scope.$apply(() => { vm.doLogin = true;
-                vm.submitValue = 'Login'; });
+            $scope.$apply(() => {
+                vm.doLogin = true;
+                vm.submitValue = 'Login';
+            });
         else
-            $scope.$apply(() => { vm.doRegistration = true;
-                vm.submitValue = 'Register'; });
+            $scope.$apply(() => {
+                vm.doRegistration = true;
+                vm.submitValue = 'Register';
+            });
     }
 
     async function sendRegistration(loginData) {
@@ -87,12 +88,10 @@ function LoginController(Resource, Utils, $scope, $location) {
     async function sendLogin(loginData) {
         const { username, password } = loginData
         const session = await Resource.login(username, password);
-        console.log(session.data.homePage);
-        localStorage.setItem('token', session.data.token);
-        localStorage.setItem('email', session.data.email);
-        if (session.status == 200)
+        if (session.status == 200) {
+            localStorage.setItem('token', session.data.token);
             $scope.$apply(() => $location.url(session.data.homePage));
-        else
+        } else
             $scope.$apply(() => vm.errorMessage = session.data.message);
     }
 

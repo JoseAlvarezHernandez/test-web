@@ -40,14 +40,6 @@
 .login-content{
     padding: 0px 0px 40px 0px
 }
-.headerTitle{
-    padding: 20px 0px;
-    font-weight: bold;
-    font-size: 40px;
-    letter-spacing: 60px;
-    color: #aeb12c;
-    text-shadow: 3px 3px 2px #00000061;
-}
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px white inset;
 }

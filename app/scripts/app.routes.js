@@ -16,6 +16,10 @@ function routes($routeProvider, $locationProvider) {
             templateUrl: 'views/userdetails.html',
             controller: 'UserDetailsController as uc',
         })
+        .when('/favorites', {
+            templateUrl: 'views/favorites.html',
+            controller: 'FavoritesController as fc',
+        })
         .when('/transactions', {
             templateUrl: 'views/transactions.html',
             controller: 'TransactionsController as tc',
@@ -23,10 +27,4 @@ function routes($routeProvider, $locationProvider) {
         .otherwise({
             redirectTo: '/',
         });
-    /*
-$locationProvider.html5Mode({
-  enabled: true,
-  requireBase: false
-});
-*/
 }
