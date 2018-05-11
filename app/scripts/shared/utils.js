@@ -14,7 +14,8 @@ function Utils($window) {
         validateFieldEmpty,
         compareObjects,
         validatePhone,
-        validateOnlyLetters
+        validateOnlyLetters,
+        showModal
     };
 
     function validatePhone(phone) {
@@ -41,9 +42,14 @@ function Utils($window) {
     function validateFieldEmpty(field) {
         return /([^\s])/img.test(field);
     }
+
+    function showModal(title, message, buttons, callback) {
+        // bootbox.dialog({ message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>' })
+        bootbox.dialog({ title: title, message: message, buttons: buttons, callback: callback });
+    }
 }
 
-Date.prototype.toFormat = function () {
+Date.prototype.toFormat = function() {
     let month = this.getMonth() + 1;
     let year = this.getFullYear();
     let day = this.getDate();

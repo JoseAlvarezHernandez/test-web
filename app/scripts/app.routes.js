@@ -22,7 +22,7 @@ function routes($routeProvider, $locationProvider) {
     })
     .when('/cards', {
       templateUrl: 'views/cards.html',
-      controller: 'CardsCtrl as cc',
+      controller: 'CardsController as cc',
     })
     .otherwise({
       redirectTo: '/',
