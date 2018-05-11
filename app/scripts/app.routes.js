@@ -19,10 +19,4 @@ function routes($routeProvider, $locationProvider) {
     .otherwise({
       redirectTo: '/',
     });
-  /*
-$locationProvider.html5Mode({
-  enabled: true,
-  requireBase: false
-});
-*/
 }

@@ -19,8 +19,6 @@ LoginController.$inject = ['Resource', 'Utils', '$scope', '$location'];
 function LoginController(Resource, Utils, $scope, $location) {
   const vm = this;
   //variables
-  vm.isLogged = localStorage.getItem('isLogged') == null ? false : localStorage.getItem('isLogged');
-  vm.userId = localStorage.getItem('userId');
   vm.loginData = { username: '', password: '' };
   vm.submitValue = 'Next';
   vm.doLogin = false;
@@ -84,9 +82,7 @@ function LoginController(Resource, Utils, $scope, $location) {
   async function sendLogin(loginData) {
     const { username, password } = loginData
     const session = await Resource.login(username, password);
-    console.log(session.data.homePage);
-    localStorage.setItem('token', session.data.token);
-    localStorage.setItem('email', session.data.email);
+    localStorage.setItem('token', session.data.token)
     if (session.status == 200)
       $scope.$apply(() => $location.url(session.data.homePage));
     else

@@ -1,7 +1,20 @@
-<div class="col-md-12 col-xs-12 header" ng-controller="HeaderController as hc">
+<div class="col-md-12 col-xs-12 header no-padding" ng-controller="HeaderController as hc">
     <div class="col-md-12 col-xs-12">
         <div class="col-md-12 col-xs-12 text-center spacing headerTitle">
-            <span>MONEY</span>
+            <span>PIGGY BANK</span>
+        </div>
+    </div>
+    <div class="col-md-12 no-padding" ng-if="hc.isLogged">
+        <div class="topnav" id="myTopnav">
+            <a href="#!/user" class="active">Home</a>
+            <a href="#!/accounts">Accounts</a>
+            <a href="#!/transactions">Transactions</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <span class="fa fa-bars"></span>
+            </a>
+            <a href="javascript:void(0);" ng-click="hc.logout()">
+                <span class="glyphicon glyphicon-log-out"></span>
+            </a>
         </div>
     </div>
 </div>
