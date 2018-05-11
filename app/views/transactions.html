@@ -1,0 +1,22 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Owner</th>
+            <th scope="col">Type</th>
+            <th scope="col">Money</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="account in tc.reqData" ng-class="{'table-danger': account.status == 'rejected', 'table-primary': account.status == 'success'}">
+            <th scope="row">{{ account.owner }}</th>
+            <td>{{ account.type }}</td>
+            <td>{{ account.amount | currency }}</td>
+            <td>{{ account.status }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star"></span> Star 
+  </button>

@@ -15,6 +15,7 @@ function Resource($http, env) {
         login,
         registration,
         getUsers,
+        getAccountUser,
     };
 
     function validateEmail(email) {
@@ -38,7 +39,8 @@ function Resource($http, env) {
                 'Accept': 'application/json'
             },
             data: {
-                username, password
+                username,
+                password
             },
         };
         return $http(http);
@@ -57,7 +59,7 @@ function Resource($http, env) {
         return $http(http);
     }
 
-    function getUsers(token, email){
+    function getUsers(token, email) {
         let http = {
             method: 'GET',
             url: `${env.api}users/${email}`,
@@ -65,6 +67,19 @@ function Resource($http, env) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${{token}}`,
+            }
+        };
+        return $http(http);
+    }
+
+    function getAccountUser(token) {
+        let http = {
+            method: 'GET',
+            url: `${env.api}transactions`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
             }
         };
         return $http(http);
