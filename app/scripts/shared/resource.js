@@ -58,14 +58,14 @@ function Resource($http, env) {
         return $http(http);
     }
 
-    function getUsers(email){
+    function getUsers(token){
         let http = {
             method: 'GET',
-            url: `${env.api}users/${email}`,
+            url: `${env.api}users`,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Authorization': `Bearer ${token}`,
             }
         };
         return $http(http);
