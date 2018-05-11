@@ -54,12 +54,12 @@ function setDatePicker(input, options) {
     }
 }
 
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
+function menuToggle() {
+    var menu = document.getElementById("myTopnav");
+    if (menu.className === "topnav") {
+        menu.className += " responsive";
     } else {
-        x.className = "topnav";
+        menu.className = "topnav";
     }
 }
 
