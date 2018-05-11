@@ -73,7 +73,7 @@ function Resource($http, env) {
     }
 
     function getAccountUser(token) {
-        let http = {
+        const http = {
             method: 'GET',
             url: `${env.api}transactions`,
             headers: {

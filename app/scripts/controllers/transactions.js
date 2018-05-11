@@ -22,24 +22,21 @@ function TransactionsController(Resource) {
 
     //Variables
     tc.class = 'table-success';
+    const token = localStorage.getItem('token');
 
-    getAccountUser();
+    //  Functions
+    tc.getAccountUser = getAccountUser;
 
     function getAccountUser() {
 
         tc.reqData = [];
 
-        const req = Resource.getAccountUser(localStorage.getItem('token')).then(function(result) {
-            tc.reqData = result.data;
-            console.log(tc.reqData);
+        const req = Resource.getAccountUser(token)
+            .then(function(result) {
 
-            if (tc.reqData.status === 'rejected') {
+                tc.reqData = result.data;
 
-                tc.class = 'table-danger';
-
-            }
-
-        });
+            });
 
 
     }
