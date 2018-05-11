@@ -2,19 +2,19 @@
 
 /**
  * @ngdoc function
- * @name moneyWeb.controller:AddFavoritesCtrl
+ * @name moneyWeb.controller:FavoritesCtrl
  * @description
- * # AddFavoritesCtrl
+ * # FavoritesCtrl
  * Controller of the moneyWeb
  */
 angular
   .module('moneyWeb')
-  .controller('AddFavoritesController', AddFavoritesController);
+  .controller('FavoritesController', FavoritesController);
 
-AddFavoritesController.$inject = ['Resource'];
+FavoritesController.$inject = ['Resource'];
 
-function AddFavoritesController(Resource){
-    var au = this;
+function FavoritesController(Resource){
+    const au = this;
         au.favorite = {};
         au.addFavorites = addFavorites;
 
