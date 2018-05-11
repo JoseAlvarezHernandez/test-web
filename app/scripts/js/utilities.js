@@ -54,6 +54,15 @@ function setDatePicker(input, options) {
     }
 }
 
+function menuToggle() {
+    var menu = document.getElementById("myTopnav");
+    if (menu.className === "topnav") {
+        menu.className += " responsive";
+    } else {
+        menu.className = "topnav";
+    }
+}
+
 Date.prototype.toFormat = function () {
     let month = this.getMonth() + 1,
         year = this.getFullYear(),

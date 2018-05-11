@@ -13,16 +13,14 @@ function routes($routeProvider, $locationProvider) {
       controller: 'LoginController as vm',
     })
     .when('/user', {
-      templateUrl: 'views/user.html',
-      controller: 'UserDetailController as uc',
+      templateUrl: 'views/userdetails.html',
+      controller: 'UserDetailsController as uc',
+    })
+    .when('/favorites', {
+      templateUrl: 'views/favorites.html',
+      controller: 'FavoritesController as fc',
     })
     .otherwise({
       redirectTo: '/',
     });
-  /*
-$locationProvider.html5Mode({
-  enabled: true,
-  requireBase: false
-});
-*/
 }
