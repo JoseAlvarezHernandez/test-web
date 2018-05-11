@@ -27,7 +27,7 @@ function UserController(Resource){
   }
 
   function getUsers(){
-    return Resource.getUsers(localStorage.getItem('token'), localStorage.getItem('email'))
+    return Resource.getUsers(localStorage.getItem('email'))
       .then(function(res) {
         console.log(res);
         uc.users = res.data;

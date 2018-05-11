@@ -16,6 +16,10 @@ function routes($routeProvider, $locationProvider) {
       templateUrl: 'views/userdetails.html',
       controller: 'UserDetailsController as uc',
     })
+    .when('/add-favorite', {
+      templateUrl: 'views/addFavorites.html',
+      controller: 'AddFavoritesController as au',
+    })
     .otherwise({
       redirectTo: '/',
     });

@@ -15,6 +15,7 @@ function Resource($http, env) {
         login,
         registration,
         getUsers,
+        addFavorites,
     };
 
     function validateEmail(email) {
@@ -57,15 +58,29 @@ function Resource($http, env) {
         return $http(http);
     }
 
-    function getUsers(token, email){
+    function getUsers(email){
         let http = {
             method: 'GET',
             url: `${env.api}users/${email}`,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${{token}}`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
             }
+        };
+        return $http(http);
+    }
+
+    function addFavorites(data) {
+        let http = {
+            method: 'PUT',
+            url: `${env.api}users/favorites`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            data
         };
         return $http(http);
     }
