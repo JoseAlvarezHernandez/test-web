@@ -14,7 +14,7 @@ function routes($routeProvider, $locationProvider) {
     })
     .when('/user', {
       templateUrl: 'views/userdetails.html',
-      controller: 'UserDetailsController as uc',
+      controller: 'UserController as uc',
     })
     .otherwise({
       redirectTo: '/',

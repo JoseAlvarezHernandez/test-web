@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name moneyWeb.controller:UserdetailscontrollerCtrl
+ * @name moneyWeb.controller:UsercontrollerCtrl
  * @description
  * # UserdetailscontrollerCtrl
  * Controller of the moneyWeb
  */
 angular
   .module('moneyWeb')
-  .controller('UserDetailsController', UserController);
+  .controller('UserController', UserController);
 
 UserController.$inject = ['Resource'];
 
