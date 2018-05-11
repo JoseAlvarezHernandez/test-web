@@ -20,6 +20,10 @@ function routes($routeProvider, $locationProvider) {
       templateUrl: 'views/favorites.html',
       controller: 'FavoritesController as fc',
     })
+    .when('/cards', {
+      templateUrl: 'views/cards.html',
+      controller: 'CardsCtrl as cc',
+    })
     .otherwise({
       redirectTo: '/',
     });
