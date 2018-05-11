@@ -20,14 +20,12 @@ function UserController(Resource){
   getUsers();
 
   function getUsers(){
-    return Resource.getUsers(localStorage.getItem('email'))
+    return Resource.getUsers(localStorage.getItem('token'))
       .then(function(res) {
-        console.log(res.data);
         uc.users = res.data;
         return uc.users;
       })
       .catch(function(error){
-        console.log(error);
       });
   }
 }
