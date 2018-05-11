@@ -4,8 +4,8 @@
     <div class="col-md-2 hidden-xs">&nbsp;</div>
     <div class="col-md-12 col-xs-12 login-content">
         <div class="spacer">&nbsp;</div>
-        <div class="col-md-3 hidden-xs">&nbsp;</div>
-        <form class="col-md-6" name="loginForm" ng-submit="vm.login();">
+        <div class="col-md-4 hidden-xs">&nbsp;</div>
+        <form class="col-md-4 col-xs-12 login-form" name="loginForm" ng-submit="vm.login();">
             <div class="form-group col-md-12">
                 <input id="username" type="text" name="username" class="login-input" placeholder="E-mail" ng-model="vm.loginData.username"
                     ng-required>
@@ -27,5 +27,6 @@
                 <input type="submit" class="btn btn-info" value="{{vm.submitValue}}" />
             </div>
         </form>
+        <div class="col-md-4 hidden-xs">&nbsp;</div>
     </div>
 </div>
