@@ -14,12 +14,16 @@ angular
 FavoritesController.$inject = ['Resource'];
 
 function FavoritesController(Resource){
-    const fc = this;
-        fc.favorite = {};
-        fc.addFavorites = addFavorites;
 
+    //variables
+    const fc = this;
+    fc.favorite = {};
+    const token = localStorage.getItem('token');
+
+    //functions
+    fc.addFavorites = addFavorites;
     function addFavorites() {
-        Resource.addFavorites(fc.favorite)
+        Resource.addFavorites(token, fc.favorite)
             .then(function(res) {
                 fc.message = res.data.message;
                 fc.success = true;

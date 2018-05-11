@@ -71,14 +71,14 @@ function Resource($http, env) {
         return $http(http);
     }
 
-    function addFavorites(data) {
-        let http = {
+    function addFavorites(token, data) {
+        const http = {
             method: 'PUT',
             url: `${env.api}users/favorites`,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Authorization': `Bearer ${token}`,
             },
             data
         };
