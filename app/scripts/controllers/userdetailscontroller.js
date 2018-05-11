@@ -17,21 +17,17 @@ function UserController(Resource){
   var uc = this;
       uc.users = [];
 
-  activate();
-
-  function activate() {
-    return getUsers()
-      .then(function(res){
-        console.log('activated');
-      });
-  }
+  getUsers();
 
   function getUsers(){
-    return Resource.getUsers(localStorage.getItem('token'), localStorage.getItem('email'))
+    return Resource.getUsers(localStorage.getItem('email'))
       .then(function(res) {
-        console.log(res);
+        console.log(res.data);
         uc.users = res.data;
         return uc.users;
+      })
+      .catch(function(error){
+        console.log(error);
       });
   }
 }
