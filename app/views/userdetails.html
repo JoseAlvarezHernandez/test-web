@@ -39,13 +39,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in [uc.users.accounts]">
+                        <tr ng-repeat="item in uc.users.accounts track by $index">
                             <th scope="row" class="font-weight-normal">{{$index}}</th>
-                            <th class="font-weight-normal">{{item[$index].label}}</th>
-                            <th class="font-weight-normal">{{item[$index].type}}</th>
-                            <th class="font-weight-normal">{{item[$index].cardMask}}</th>
-                            <th class="font-weight-normal">{{item[$index].expires}}</th>
-                            <th colspan="2" class="font-weight-normal">{{item[$index].balance}}</th>
+                            <th class="font-weight-normal">{{item.label}}</th>
+                            <th class="font-weight-normal">{{item.type}}</th>
+                            <th class="font-weight-normal">{{item.cardMask}}</th>
+                            <th class="font-weight-normal">{{item.expires}}</th>
+                            <th colspan="2" class="font-weight-normal">{{item.balance}}</th>
                         </tr>
                     </tbody>
                 </table>
