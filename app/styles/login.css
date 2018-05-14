@@ -48,3 +48,6 @@ input:-webkit-autofill {
     padding-top: 20px;
     box-shadow: 1px 1px 3px 2px #00000061;
 }
+.login-submit{
+    width: 50%;
+}
