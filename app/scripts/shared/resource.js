@@ -57,9 +57,8 @@ function Resource($http, env) {
         };
         return $http(http);
     }
-
     function getUsers(token){
-        let http = {
+        const http = {
             method: 'GET',
             url: `${env.api}users`,
             headers: {
