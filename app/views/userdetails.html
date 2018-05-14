@@ -40,7 +40,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in uc.users.accounts track by $index">
-                            <th scope="row" class="font-weight-normal">{{$index}}</th>
+                            <th scope="row" class="font-weight-normal">{{$index + 1}}</th>
                             <th class="font-weight-normal">{{item.label}}</th>
                             <th class="font-weight-normal">{{item.type}}</th>
                             <th class="font-weight-normal">{{item.cardMask}}</th>
