@@ -1,50 +1,31 @@
-<div class="mt-5">
-    <ul class="list-unstyled">
-        <li>
-            <div class="border-info mb-3">
-                <div class="card-header row">
-                    <h3 class="col-sm-9">User details</h3>
-                    <a href="#" class="link col-sm-3 text-right"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3 text-right">
-                            Name:
-                        </div>
-                        <div class="col-sm-9">
-                            {{uc.users.name}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-right">
-                            Email:
-                        </div>
-                        <div class="col-sm-9">
-                            {{uc.users.email}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-right">
-                            Phone:
-                        </div>
-                        <div class="col-sm-9">
-                            {{uc.users.phone}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-right">
-                            Status:
-                        </div>
-                        <div class="col-sm-9 {{uc.users.status === 1 ? '@brand-danger' : 'Inactiva'}}">
-                            {{uc.users.status === 1 ? 'Activa' : 'Inactiva'}}
-                        </div>
-                    </div>
+<div class="container">
+    <div>
+        <div class="panel panel-default mt-3">
+            <!-- Default panel contents -->
+            <div class="panel-heading">User details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-4 col-md-3 text-right">Name :</div>
+                    <div class="col-xs-8 col-md-9 text-left">{{uc.users.name}}</div>
+                    <div class="col-xs-4 col-md-3 text-right">Email :</div>
+                    <div class="col-xs-8 col-md-9 text-left text-of">{{uc.users.email}}</div>
+                    <div class="col-xs-4 col-md-3 text-right">Phone :</div>
+                    <div class="col-xs-8 col-md-9 text-left">{{uc.users.phone}}</div>
+                    <div class="col-xs-4 col-md-3 text-right">Status :</div>
+                    <div class="col-xs-8 col-md-9 text-left {{uc.users.status === 1 ? '@brand-danger' : 'Inactiva'}}">{{uc.users.status === 1 ? 'Activa' : 'Inactiva'}}</div>
                 </div>
             </div>
-            <div class="border-info mb-3">
-                <h3 class="card-header">
-                    Accounts details
-                </h3>
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Accounts details</div>
+            <!-- <div class="panel-body">
+                <p>...</p>
+            </div> -->
+            
+            <!-- Table -->
+            <div class="table-responsive">
                 <table class="table table-striped mt-3">
                     <thead class="thead-ligth">
                         <tr>
@@ -54,7 +35,7 @@
                             <th scope="col">Number card</th>
                             <th scope="col">Expires</th>
                             <th scope="col">Mount</th>
-                            <th scope="col">Details</th>
+                            <th scope="col"><button type="button" class="btn btn-primary btn-sm">Ver detalles</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,12 +46,11 @@
                             <th class="font-weight-normal">{{item[$index].cardMask}}</th>
                             <th class="font-weight-normal">{{item[$index].expires}}</th>
                             <th class="font-weight-normal">{{item[$index].balance}}</th>
-                            <th class="font-weight-normal"><button type="button" class="btn btn-primary btn-sm">Ver detalles</button></th>
-                            <!-- <th class="font-weight-normal"><a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></th> -->
+                            <th class="font-weight-normal"></th>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>

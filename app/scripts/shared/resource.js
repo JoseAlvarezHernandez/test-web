@@ -57,7 +57,6 @@ function Resource($http, env) {
         };
         return $http(http);
     }
-
     function getUsers(token){
         const http = {
             method: 'GET',

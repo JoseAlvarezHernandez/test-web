@@ -9,11 +9,11 @@
  */
 angular
   .module('moneyWeb')
-  .controller('User', User);
+  .controller('UserController', UserController);
 
-User.$inject = ['Resource'];
+  UserController.$inject = ['Resource'];
 
-function User(Resource){
+function UserController(Resource){
   var uc = this;
       uc.users = [];
 
