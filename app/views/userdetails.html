@@ -34,8 +34,8 @@
                             <th scope="col">Type</th>
                             <th scope="col">Number card</th>
                             <th scope="col">Expires</th>
-                            <th scope="col">Mount</th>
-                            <th scope="col"><button type="button" class="btn btn-primary btn-sm">Ver detalles</button></th>
+                            <th scope="col">Amount</th>
+                            <th scope="col"><button type="button" class="btn btn-primary btn-sm">Details</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +45,7 @@
                             <th class="font-weight-normal">{{item[$index].type}}</th>
                             <th class="font-weight-normal">{{item[$index].cardMask}}</th>
                             <th class="font-weight-normal">{{item[$index].expires}}</th>
-                            <th class="font-weight-normal">{{item[$index].balance}}</th>
-                            <th class="font-weight-normal"></th>
+                            <th colspan="2" class="font-weight-normal">{{item[$index].balance}}</th>
                         </tr>
                     </tbody>
                 </table>
