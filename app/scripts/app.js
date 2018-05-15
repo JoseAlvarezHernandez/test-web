@@ -10,19 +10,5 @@
  */
 angular
   .module('moneyWeb', [
-    'ngAnimate',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-  ])
-  .config(['$httpProvider', ($httpProvider) => {
-    $httpProvider.interceptors.push(httpInterceptor);
-  }])
-  /* 
-  .config(['$locationProvider', ($locationProvider) => {
-    $locationProvider.hashPrefix('');
-  }])
-  */
+    'ngRoute'
+  ]);

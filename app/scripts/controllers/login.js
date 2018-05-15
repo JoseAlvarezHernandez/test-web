@@ -48,8 +48,8 @@ function LoginController(Resource, Utils, $scope, $location) {
 
         error = animateInput(inputs);
         if (error) {
-            vm.error = 'Por favor llene los campos correctamente.';
-            setTimeout(function() {
+            vm.error = 'Please fill out all fields';
+            setTimeout(() => {
                 inputs.map(input => input.input.removeClass('alert-effect'));
             }, 500);
             return false;
@@ -78,7 +78,7 @@ function LoginController(Resource, Utils, $scope, $location) {
     }
 
     async function sendRegistration(loginData) {
-        const reg = await Resource.registration({...loginData, homePage: 'user' });
+        const reg = await Resource.registration({ ...loginData, homePage: 'user' });
         if (reg.status === 201)
             sendLogin(loginData);
         else
