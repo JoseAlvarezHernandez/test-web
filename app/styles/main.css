@@ -50,14 +50,17 @@ checkbox{
 }
 
 .headerTitle{
-  padding: 20px 0px;
+  padding: 20px 15px;
   font-weight: bold;
-  font-size: 35px;
-  letter-spacing: 30px;
-  color: #aeb12c;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: #3b828a;
+  background-color: #e6e6e699;
   text-shadow: 3px 3px 2px #6d5e5e61;
 }
-
+.divideHorizontal{
+  border: 1px solid #000;
+}
 .header-agents {
   min-height: 73px;
   border-radius: 10px 10px 0 0;
