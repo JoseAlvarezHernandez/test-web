@@ -11,7 +11,7 @@ angular
     .module('moneyWeb')
     .controller('TransactionsController', TransactionsController);
 
-LoginController.$inject = ['Resource'];
+TransactionsController.$inject = ['Resource'];
 
 /**
  * @function TransactionsController
@@ -23,9 +23,10 @@ function TransactionsController(Resource) {
     //Variables
     tc.class = 'table-success';
     const token = localStorage.getItem('token');
+    tc.size = null;
 
     //  Functions
-    tc.getAccountUser = getAccountUser;
+    getAccountUser();
 
     function getAccountUser() {
 
@@ -35,23 +36,10 @@ function TransactionsController(Resource) {
             .then(function(result) {
 
                 tc.reqData = result.data;
+                tc.size = tc.reqData.length;
 
             });
 
-
-    }
-
-    function getClass(status) {
-
-        console.log(status);
-
-        tc.reqData.forEach(
-            function addclass(value) {
-
-                console.log(value);
-
-            }
-        )
 
     }
 
