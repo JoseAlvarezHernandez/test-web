@@ -43,3 +43,11 @@
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px white inset;
 }
+.login-form{
+    border-radius: 20px;
+    padding-top: 20px;
+    box-shadow: 1px 1px 3px 2px #00000061;
+}
+.login-submit{
+    width: 50%;
+}

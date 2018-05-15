@@ -15,6 +15,7 @@ function Resource($http, env) {
         login,
         registration,
         getUsers,
+        getAccountUser,
         addFavorites,
     };
 
@@ -39,7 +40,8 @@ function Resource($http, env) {
                 'Accept': 'application/json'
             },
             data: {
-                username, password
+                username,
+                password
             },
         };
         return $http(http);
@@ -58,12 +60,25 @@ function Resource($http, env) {
         return $http(http);
     }
 
-    function getUsers(token){
+    function getUsers(token) {
         let http = {
             method: 'GET',
             url: `${env.api}users`,
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        };
+        return $http(http);
+    }
+
+    function getAccountUser(token) {
+        const http = {
+            method: 'GET',
+            url: `${env.api}transactions`,
+            headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`,
             }
