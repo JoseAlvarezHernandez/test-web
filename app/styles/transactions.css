@@ -1,3 +1,11 @@
 .centerButtonTrs {
     text-align: center;
 }
+
+.transBtn{
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px solid #044d049e;
+    box-shadow: 1px 1px 11px -2px #000;
+}
