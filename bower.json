@@ -25,6 +25,7 @@
     "angular-sanitize": "^1.6.10",
     "angular-touch": "^1.6.10",
     "fusioncharts": "^3.12.2",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "angular-mocks": "^1.7.0"
   }
 }
