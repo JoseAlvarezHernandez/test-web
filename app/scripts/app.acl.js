@@ -9,6 +9,7 @@ acl.$inject = ['$rootScope', '$location'];
 
 function acl($rootScope, $location) {
   $rootScope.$on('$routeChangeStart', function (event, next, current) {
+    localStorage.setItem('path', $location.$$path);
     if (localStorage.getItem('token') == null) {
       $location.path('/');
     }

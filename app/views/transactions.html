@@ -7,24 +7,38 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Owner</th>
-                                <th scope="col">Type</th>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
                                 <th scope="col">Money</th>
-                                <th scope="col">Status</th>
-                                <th scope="col" class="centerButtonTrs">
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">
+                                    <span class="glyphicon glyphicon-usd green transBtn" aria-hidden="true" data-toggle="modal" data-target="#myModal"></span>
+                                    <!--
                                     <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                                            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-                                        </button>
+                                        
+                                    </button>
+                                -->
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="account in tc.reqData" ng-class="{'alert-danger': account.status === 'rejected'}">
-                                <th scope="row">{{ account.owner }}</th>
-                                <td ng-if="account.type === 'outgoing'"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></td>
-                                <td ng-if="account.type !== 'outgoing'"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
-                                <td>{{ account.amount | currency }}</td>
-                                <td colspan="2"><span ng-class="{'glyphicon glyphicon-remove': account.status === 'rejected', 'glyphicon glyphicon-ok': account.status === 'success'}" aria-hidden="true">&nbsp;</span> {{ account.status }}
+                                <td scope="row">{{ account.sender }}</td>
+                                <td scope="row">{{ account.receiver }}</td>
+                                <td>
+                                    <span class="glyphicon" ng-class="account.type == 'incoming' ? 'glyphicon-chevron-up green' : ' glyphicon-chevron-down red'"></span>
+                                    {{ account.amount | currency }}
+                                </td>
+                                <td>
+                                    {{account.created_at | date }}
+                                </td>
+                                <td>
+                                    {{account.created_at | date : 'HH:mm:ss'}}
+                                </td>
+                                <td>
+                                    <span class="glyphicon" ng-class="{ 'glyphicon-remove red': account.status==='rejected' ,
+                                        'glyphicon-ok green': account.status==='success' } " aria-hidden="true ">&nbsp;</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -34,14 +48,14 @@
         </div>
     </div>
 
-    <div class="row" ng-if="tc.size === 0">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <div class="thumbnail alert alert-danger">
-                <div class="caption" style="text-align: center">
+    <div class="row " ng-if="tc.size===0 ">
+        <div class="col-sm-12 col-md-12 col-lg-12 ">
+            <div class="thumbnail alert alert-danger ">
+                <div class="caption " style="text-align: center ">
                     <h3>There are no movements to show.</h3>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-include="'views/modal/transactions.html'"></div>
+    <div ng-include=" 'views/modal/transactions.html' "></div>
 </div>
