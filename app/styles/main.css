@@ -61,6 +61,14 @@ checkbox{
 .divideHorizontal{
   border: 1px solid #000;
 }
+
+.green{
+  color: #044d049e;
+}
+
+.red{
+  color: #f36679;
+}
 .header-agents {
   min-height: 73px;
   border-radius: 10px 10px 0 0;
