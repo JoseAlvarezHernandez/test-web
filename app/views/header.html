@@ -8,24 +8,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">BANK</a>
+            <a href="#!/user" class="navbar-brand">BANK</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
             <ul class="nav navbar-nav" ng-if="hc.isLogged">
-                <li class="active">
+                <li ng-class="hc.path == '/user' ? 'active' : ''">
                     <a href="#!/user">Home</a>
                 </li>
-                <li>
+                <li ng-class="hc.path == '/cards' ? 'active' : ''">
                     <a href="#!/cards">Cards</a>
                 </li>
-                <li>
+                <li ng-class="hc.path == '/transactions' ? 'active' : ''">
                     <a href="#!/transactions">Transactions</a>
                 </li>
-                <li>
+                <li ng-class="hc.path == '/favorites' ? 'active' : ''">
                     <a href="#!/favorites">Favorites</a>
                 </li>
                 <li>
-                    <a class="right" href="javascript:void(0);" ng-click="hc.logout()">
+                    <a href="javascript:void(0);" ng-click="hc.logout()">
                         <span class="glyphicon glyphicon-log-out"></span>
                     </a>
                 </li>
