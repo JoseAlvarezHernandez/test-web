@@ -24,7 +24,6 @@
     "angular-route": "^1.6.10",
     "angular-sanitize": "^1.6.10",
     "angular-touch": "^1.6.10",
-    "bootstrap": "^3.7.1",
     "fusioncharts": "^3.12.2",
     "jquery": "^3.3.1"
   }
