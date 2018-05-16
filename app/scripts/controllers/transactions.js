@@ -20,6 +20,8 @@ function TransactionsController(Resource) {
 
     const tc = this;
 
+    tc.items = [{ account: 0, label: 'Select one' }, ...data];
+    tc.selected = { account: 0, label: 'Select one' };
     //Variables
     tc.class = 'table-success';
     const token = localStorage.getItem('token');
@@ -34,7 +36,7 @@ function TransactionsController(Resource) {
         tc.reqData = [];
 
         const req = Resource.getAccountUser(token)
-            .then(function(result) {
+            .then(function (result) {
 
                 tc.reqData = result.data;
                 tc.size = tc.reqData.length;
