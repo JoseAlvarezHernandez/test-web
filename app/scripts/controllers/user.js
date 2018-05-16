@@ -14,8 +14,8 @@ angular
   UserController.$inject = ['Resource'];
 
 function UserController(Resource){
-  var uc = this;
-      uc.users = [];
+  const uc = this;
+        // uc.users = [];
 
   getUsers();
 
@@ -27,5 +27,11 @@ function UserController(Resource){
       })
       .catch(function(error){
       });
+  }
+
+  uc.addAddress = addAddress;
+  
+  function addAddress(){
+    uc.address = [];
   }
 }

@@ -1,0 +1,63 @@
+<div id="addAddressWrap" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Transaction</h4>
+            </div>
+            <form name="addressForm" ng-submit="uc.addAddress()">
+            <div class="modal-body">
+                
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Account:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Destination account:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="000000000000">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>CVV:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0000">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>PIN:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="****">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Detail:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Detail">
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <input type="submit" class="btn  btn-success" value="Confirm" />
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
