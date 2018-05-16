@@ -20,7 +20,7 @@ function TransactionsController(Resource) {
 
     const tc = this;
 
-    tc.items = [{ account: 0, label: 'Select one' }, ...data];
+    tc.items = [{ account: 0, label: 'Select one' }];
     tc.selected = { account: 0, label: 'Select one' };
     //Variables
     tc.class = 'table-success';

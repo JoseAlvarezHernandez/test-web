@@ -42,12 +42,13 @@ function LoginController(Resource, Utils, $scope, $location) {
     }
 
     function login() {
+        loader();
         let error = false;
-
         const inputs = getInputs();
 
         error = animateInput(inputs);
         if (error) {
+            closeLoader();
             vm.error = 'Please fill out all fields';
             setTimeout(() => {
                 inputs.map(input => input.input.removeClass('alert-effect'));
@@ -69,11 +70,13 @@ function LoginController(Resource, Utils, $scope, $location) {
             $scope.$apply(() => {
                 vm.doLogin = true;
                 vm.submitValue = 'Login';
+                closeLoader();
             });
         else
             $scope.$apply(() => {
                 vm.doRegistration = true;
                 vm.submitValue = 'Register';
+                closeLoader();
             });
     }
 
@@ -81,8 +84,10 @@ function LoginController(Resource, Utils, $scope, $location) {
         const reg = await Resource.registration({ ...loginData, homePage: 'user' });
         if (reg.status === 201)
             sendLogin(loginData);
-        else
+        else {
             $scope.$apply(() => vm.errorMessage = reg.data.message);
+            closeLoader();
+        }
     }
 
     async function sendLogin(loginData) {
@@ -90,9 +95,12 @@ function LoginController(Resource, Utils, $scope, $location) {
         const session = await Resource.login(username, password);
         if (session.status == 200) {
             localStorage.setItem('token', session.data.token);
+            closeLoader();
             $scope.$apply(() => $location.url(session.data.homePage));
-        } else
+        } else {
             $scope.$apply(() => vm.errorMessage = session.data.message);
+            closeLoader();
+        }
     }
 
     function getInputs() {
