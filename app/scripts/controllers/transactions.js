@@ -27,6 +27,7 @@ function TransactionsController(Resource) {
 
     //  Functions
     getAccountUser();
+    tc.getAccounts = getAccounts;
 
     function getAccountUser() {
 
@@ -40,6 +41,22 @@ function TransactionsController(Resource) {
 
             });
 
+
+    }
+
+    function getAccounts() {
+
+        console.log("hi");
+
+        tc.reqAccounts = [];
+
+        const req = Resource.getUsers(token)
+            .then(function(result) {
+
+                tc.reqAccounts = result.data;
+                console.log(tc.reqAccounts);
+
+            });
 
     }
 

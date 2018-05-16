@@ -1,50 +1,45 @@
 <div class="container">
     <br>
     <div class="row" ng-if="tc.size !== 0">
-        <div class="col-sm-12 col-md-12">
-            <div class="thumbnail">
-                <div class="caption">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">From</th>
-                                <th scope="col">To</th>
-                                <th scope="col">Money</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">
-                                    <span class="glyphicon glyphicon-usd green transBtn" aria-hidden="true" data-toggle="modal" data-target="#myModal"></span>
-                                    <!--
+        <div class="caption">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Money</th>
+                        <th scope="col" class="hidden-xs">Date</th>
+                        <th scope="col" class="hidden-xs">Time</th>
+                        <th scope="col">
+                            <span class="glyphicon glyphicon-usd green transBtn" aria-hidden="true" data-toggle="modal" data-target="#myModal" ng-click="tc.getAccounts()"></span>
+                            <!--
                                     <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
                                         
                                     </button>
                                 -->
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="account in tc.reqData" ng-class="{'alert-danger': account.status === 'rejected'}">
-                                <td scope="row">{{ account.sender }}</td>
-                                <td scope="row">{{ account.receiver }}</td>
-                                <td>
-                                    <span class="glyphicon" ng-class="account.type == 'incoming' ? 'glyphicon-chevron-up green' : ' glyphicon-chevron-down red'"></span>
-                                    {{ account.amount | currency }}
-                                </td>
-                                <td>
-                                    {{account.created_at | date }}
-                                </td>
-                                <td>
-                                    {{account.created_at | date : 'HH:mm:ss'}}
-                                </td>
-                                <td>
-                                    <span class="glyphicon" ng-class="{ 'glyphicon-remove red': account.status==='rejected' ,
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="account in tc.reqData" ng-class="{'alert-danger': account.status === 'rejected'}">
+                        <td scope="row">{{ account.sender }}</td>
+                        <td scope="row">{{ account.receiver }}</td>
+                        <td>
+                            <span class="glyphicon" ng-class="account.type == 'incoming' ? 'glyphicon-chevron-up green' : ' glyphicon-chevron-down red'"></span> {{ account.amount | currency }}
+                        </td>
+                        <td class="hidden-xs">
+                            {{account.created_at | date }}
+                        </td>
+                        <td class="hidden-xs">
+                            {{account.created_at | date : 'HH:mm:ss'}}
+                        </td>
+                        <td>
+                            <span class="glyphicon" ng-class="{ 'glyphicon-remove red': account.status==='rejected' ,
                                         'glyphicon-ok green': account.status==='success' } " aria-hidden="true ">&nbsp;</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

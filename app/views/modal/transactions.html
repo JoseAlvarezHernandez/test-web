@@ -13,14 +13,12 @@
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <select class="form-control">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
+                        <option ng-repeat="account in tc.req.reqAccounts">{{ account.owner }}</option>
                       </select>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-2 mt-2">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <label>Destination account:</label>
                     </div>
@@ -29,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <label>CVV:</label>
                     </div>
@@ -38,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <label>PIN:</label>
                     </div>
@@ -47,7 +45,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <label>Detail:</label>
                     </div>
