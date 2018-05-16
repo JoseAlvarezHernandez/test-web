@@ -86,7 +86,12 @@ checkbox{
   font-size: 22px;
   height: 64px;
 }
-
+.padding{
+  padding: 15px;
+}
+.exit{
+  font-size: 30px;
+}
 .content-agents{
   background-color: #ffffff;
 }

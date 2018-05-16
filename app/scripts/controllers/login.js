@@ -27,6 +27,15 @@ function LoginController(Resource, Utils, $scope, $location) {
 
     //functions
     vm.login = login;
+    vm.reset = reset;
+
+    function reset() {
+        vm.loginData = { username: '', password: '' };
+        vm.submitValue = 'Next';
+        vm.doLogin = false;
+        vm.doRegistration = false;
+        vm.errorMessage = '';
+    }
 
     function animateInput(inputs) {
         let status = false;
