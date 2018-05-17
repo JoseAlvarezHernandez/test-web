@@ -90,10 +90,10 @@ function LoginController(Resource, Utils, $scope, $location) {
     }
 
     async function sendRegistration(loginData) {
-        const reg = await Resource.registration({ ...loginData, homePage: 'user' });
-        if (reg.status === 201)
+        try {
+            const reg = await Resource.registration({ ...loginData, homePage: 'user' });
             sendLogin(loginData);
-        else {
+        } catch (error) {
             $scope.$apply(() => vm.errorMessage = reg.data.message);
             closeLoader();
         }
@@ -101,13 +101,13 @@ function LoginController(Resource, Utils, $scope, $location) {
 
     async function sendLogin(loginData) {
         const { username, password } = loginData
-        const session = await Resource.login(username, password);
-        if (session.status == 200) {
+        try {
+            const session = await Resource.login(username, password);
             localStorage.setItem('token', session.data.token);
             closeLoader();
             $scope.$apply(() => $location.url(session.data.homePage));
-        } else {
-            $scope.$apply(() => vm.errorMessage = session.data.message);
+        } catch (error) {
+            $scope.$apply(() => vm.errorMessage = error.data.message);
             closeLoader();
         }
     }
