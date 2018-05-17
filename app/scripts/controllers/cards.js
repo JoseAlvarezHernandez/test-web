@@ -25,6 +25,7 @@ function CardsController(Resource, Utils) {
 
     //functions
     cc.saveCard = saveCard;
+    cc.getCards = getCards;
 
     getCards();
 
@@ -38,14 +39,10 @@ function CardsController(Resource, Utils) {
     }
 
     function saveCard() {
-        console.log("saving");
-        console.log(cc.cardData);
 
         return Resource.createCard(localStorage.getItem('token'), cc.cardData)
             .then(function(res) {
-                console.log(res);
-                cc.cards = res.data;
-                return cc.cards;
+                getCards();
             });
 
     }
