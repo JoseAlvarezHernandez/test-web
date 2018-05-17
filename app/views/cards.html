@@ -1,0 +1,16 @@
+<div class="container">
+
+    <!-- {{ cc.cards | json }} -->
+
+    <div ng-if="!cc.cards.length" class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">There are not accounts</h1>
+            <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Create account
+            </button>
+        </div>
+    </div>
+
+    <div ng-include="cc.newCardModal"></div>
+</div>
