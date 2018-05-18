@@ -19,7 +19,7 @@ const loader = function () {
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            animationData: animationData
+            animationData: animationData,
         };
         bodymovin.loadAnimation(params);
     }

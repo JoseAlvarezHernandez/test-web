@@ -113,7 +113,7 @@ function LoginController(Resource, Utils, $scope, $location) {
     }
 
     function getInputs() {
-        let username = $('#username'),
+        const username = $('#username'),
             password = $('#password'),
             name = $('#name'),
             phone = $('#phone'),
