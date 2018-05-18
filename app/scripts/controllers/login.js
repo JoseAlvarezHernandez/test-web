@@ -116,10 +116,11 @@ function LoginController(Resource, Utils, $scope, $location) {
         const username = $('#username'),
             password = $('#password'),
             name = $('#name'),
-            phone = $('#phone'),
-            inputs = [
-                { input: username, status: (Utils.validateFieldEmpty(vm.loginData.username) && Utils.validateEmail(vm.loginData.username)) }
-            ];
+            phone = $('#phone');
+
+        let inputs = [
+            { input: username, status: (Utils.validateFieldEmpty(vm.loginData.username) && Utils.validateEmail(vm.loginData.username)) }
+        ];
         if (vm.doLogin)
             inputs = [
                 ...inputs,
