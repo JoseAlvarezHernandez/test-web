@@ -9,14 +9,10 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>Account:</label>
+                        <label>Account:{{tc.selected}}</label>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <select class="form-control">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                      </select>
+                        <select class="form-control" ng-model="tc.selected" ng-options="item as item.label for item in tc.items track by item.account"></select>
                     </div>
                 </div>
 

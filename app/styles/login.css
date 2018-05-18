@@ -45,7 +45,7 @@ input:-webkit-autofill {
 }
 .login-form{
     border-radius: 20px;
-    padding-top: 20px;
+    padding-top: 20px 0px;
     box-shadow: 1px 1px 3px 2px #00000061;
 }
 .login-submit{

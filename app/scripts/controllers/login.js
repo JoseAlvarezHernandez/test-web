@@ -27,6 +27,15 @@ function LoginController(Resource, Utils, $scope, $location) {
 
     //functions
     vm.login = login;
+    vm.reset = reset;
+
+    function reset() {
+        vm.loginData = { username: '', password: '' };
+        vm.submitValue = 'Next';
+        vm.doLogin = false;
+        vm.doRegistration = false;
+        vm.errorMessage = '';
+    }
 
     function animateInput(inputs) {
         let status = false;
@@ -42,12 +51,13 @@ function LoginController(Resource, Utils, $scope, $location) {
     }
 
     function login() {
+        loader();
         let error = false;
-
         const inputs = getInputs();
 
         error = animateInput(inputs);
         if (error) {
+            closeLoader();
             vm.error = 'Please fill out all fields';
             setTimeout(() => {
                 inputs.map(input => input.input.removeClass('alert-effect'));
@@ -69,34 +79,41 @@ function LoginController(Resource, Utils, $scope, $location) {
             $scope.$apply(() => {
                 vm.doLogin = true;
                 vm.submitValue = 'Login';
+                closeLoader();
             });
         else
             $scope.$apply(() => {
                 vm.doRegistration = true;
                 vm.submitValue = 'Register';
+                closeLoader();
             });
     }
 
     async function sendRegistration(loginData) {
-        const reg = await Resource.registration({ ...loginData, homePage: 'user' });
-        if (reg.status === 201)
+        try {
+            const reg = await Resource.registration({ ...loginData, homePage: 'user' });
             sendLogin(loginData);
-        else
+        } catch (error) {
             $scope.$apply(() => vm.errorMessage = reg.data.message);
+            closeLoader();
+        }
     }
 
     async function sendLogin(loginData) {
         const { username, password } = loginData
-        const session = await Resource.login(username, password);
-        if (session.status == 200) {
+        try {
+            const session = await Resource.login(username, password);
             localStorage.setItem('token', session.data.token);
+            closeLoader();
             $scope.$apply(() => $location.url(session.data.homePage));
-        } else
-            $scope.$apply(() => vm.errorMessage = session.data.message);
+        } catch (error) {
+            $scope.$apply(() => vm.errorMessage = error.data.message);
+            closeLoader();
+        }
     }
 
     function getInputs() {
-        let username = $('#username'),
+        const username = $('#username'),
             password = $('#password'),
             name = $('#name'),
             phone = $('#phone'),
