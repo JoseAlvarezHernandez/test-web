@@ -3,27 +3,29 @@
 <div class="col-md-12 col-xs-12">
     <div class="col-md-2 hidden-xs">&nbsp;</div>
     <div class="col-md-12 col-xs-12 login-content">
-        <div class="spacer">&nbsp;</div>
         <div class="col-md-4 hidden-xs">&nbsp;</div>
         <form class="col-md-4 col-xs-12 login-form" name="loginForm" ng-submit="vm.login();">
-            <div class="form-group col-md-12">
-                <input id="username" type="text" name="username" class="login-input" placeholder="E-mail" ng-model="vm.loginData.username"
-                    ng-required>
+            <div class="col-xs-12 text-right padding">
+                <span ng-if="vm.submitValue !== 'Next'" ng-click="vm.reset();" class="glyphicon glyphicon-remove-circle red exit"></span>
             </div>
-            <div class="form-group col-md-12" ng-if="vm.doLogin || vm.doRegistration">
+            <div class="form-group col-xs-12">
+                <input id="username" type="text" ng-readonly="vm.submitValue !== 'Next'" name="username" class="login-input" placeholder="E-mail"
+                    ng-model="vm.loginData.username" ng-required>
+            </div>
+            <div class="form-group col-xs-12" ng-if="vm.doLogin || vm.doRegistration">
                 <input id="password" type="password" name="password" class="login-input" placeholder="Password" ng-model="vm.loginData.password"
                     ng-required>
             </div>
-            <div class="form-group col-md-12" ng-if="vm.doRegistration">
+            <div class="form-group col-xs-12" ng-if="vm.doRegistration">
                 <input id="name" type="text" name="name" class="login-input" placeholder="Name" ng-model="vm.loginData.name" ng-required>
             </div>
-            <div class="form-group col-md-12" ng-if="vm.doRegistration">
+            <div class="form-group col-xs-12" ng-if="vm.doRegistration">
                 <input id="phone" type="number" name="phone" class="login-input" placeholder="Telephone" ng-model="vm.loginData.phone" ng-required>
             </div>
-            <div class="form-group col-md-12 text-center">
+            <div class="form-group col-xs-12 text-center">
                 <label class="error message">{{vm.errorMessage}}</label>
             </div>
-            <div class="form-group col-md-12 text-center">
+            <div class="form-group col-xs-12 text-center">
                 <input type="submit" class="btn btn-info login-submit" value="{{vm.submitValue}}" />
             </div>
         </form>

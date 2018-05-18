@@ -14,7 +14,7 @@ function Utils($window) {
         validateFieldEmpty,
         compareObjects,
         validatePhone,
-        validateOnlyLetters
+        validateOnlyLetters,
     };
 
     function validatePhone(phone) {
