@@ -93,7 +93,7 @@ function Resource($http, env) {
             method: 'GET',
             url: `${env.api}accounts`,
             headers: {
-                'Content-Type': 'application/json; charset=utf-8',
+                'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`,
             }

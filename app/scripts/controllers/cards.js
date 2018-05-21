@@ -7,7 +7,8 @@
  * # CardsCtrl
  * Controller of the testApp
  */
-angular.module('moneyWeb')
+angular
+.module('moneyWeb')
     .controller('CardsController', CardsController);
 
 CardsController.$inject = ['Resource', 'Utils'];
@@ -21,7 +22,6 @@ function CardsController(Resource, Utils) {
     cc.cards = [];
     cc.cardTypes = ['Select one', 'Credit card', 'Debit card'];
     cc.cardData = { account: '', balance: '', type: cc.cardTypes[0], cardMask: '', cvc: '', label: '', expires: '', pin: '' };
-
 
     //functions
     cc.saveCard = saveCard;
