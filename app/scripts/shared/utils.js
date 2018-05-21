@@ -14,11 +14,71 @@ function Utils($window) {
         validateFieldEmpty,
         compareObjects,
         validatePhone,
-        validateOnlyLetters
+        validateOnlyLetters,
+        animateInput,
+        getInputsValidation,
+        getValidate,
     };
 
-    function validatePhone(phone) {
-        return /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/img.test(phone);
+    function getInputsValidation(fields) {
+        const inputs = [];
+
+        if (typeof fields === 'string') {
+            const input = document.getElementById(fields);
+
+            inputs.push({ input, status: getValidate(input) });
+        } else {
+            fields.forEach(function (field, key) {
+                const input = document.getElementById(field);
+
+                inputs.push({ input, status: getValidate(input) });
+            });
+        }
+        return animateInput(inputs);
+    }
+
+    function getValidate(input) {
+        const validations = input.getAttribute('validates').split(',');
+        const valid = validations.filter(validation => {
+            let result = null;
+
+            switch (validation) {
+                case 'email':
+                    result = validateEmail(input.value)
+                    break;
+                case 'letters':
+                    result = validateOnlyLetters(input.value);
+                    break;
+                case 'empty':
+                    result = validateFieldEmpty(input.value);
+                    break;
+                case 'phone':
+                    result = validatePhone(input.value);
+                    break;
+            };
+            return result;
+        });
+
+        return valid.length === validations.length ? true : false;
+    }
+
+    function animateInput(inputs) {
+        let status = true;
+
+        inputs.forEach((input) => {
+            if (!input.status) {
+                status = false;
+                input.input.classList.add('alert-input', 'alert-effect');
+            } else {
+                input.input.classList.remove('alert-input');
+            }
+        }, this);
+
+        setTimeout(() => {
+            inputs.map(input => input.input.classList.remove('alert-effect'));
+        }, 600);
+
+        return status;
     }
 
     function compareObjects(objectOne, objectTwo) {
@@ -28,6 +88,10 @@ function Utils($window) {
     function orderBy(property, reverse) {
         reverse = (property === property) ? !reverse : false;
         return reverse;
+    }
+
+    function validatePhone(phone) {
+        return /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/img.test(phone);
     }
 
     function validateEmail(email) {
@@ -42,13 +106,3 @@ function Utils($window) {
         return /([^\s])/img.test(field);
     }
 }
-
-Date.prototype.toFormat = function () {
-    let month = this.getMonth() + 1;
-    let year = this.getFullYear();
-    let day = this.getDate();
-    let hours = this.getHours();
-    let minutes = this.getMinutes();
-    let seconds = this.getSeconds();
-    return (`${year}-${(month > 9 ? month : '0' + month)}-${(day > 9 ? day : '0' + day)} ${hours}:${minutes}:${seconds}`);
-};

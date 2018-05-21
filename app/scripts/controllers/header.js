@@ -32,6 +32,17 @@ function HeaderController($scope, $window) {
             hc.isLogged = newVal;
         }
     );
+
+    $scope.$watch(
+        () => {
+            return localStorage.path;
+        },
+        (newVal, oldVal) => {
+            if (newVal == undefined)
+                return;
+            hc.path = newVal;
+        }
+    );
     //functions
     hc.logout = logout;
 
