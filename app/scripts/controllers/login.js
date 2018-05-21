@@ -37,32 +37,20 @@ function LoginController(Resource, Utils, $scope, $location) {
         vm.errorMessage = '';
     }
 
-    function animateInput(inputs) {
-        let status = false;
-        inputs.forEach((val) => {
-            if (!val.status) {
-                status = true;
-                val.input.addClass('alert-input alert-effect');
-            } else {
-                val.input.removeClass('alert-input');
-            }
-        }, this);
-        return status;
-    }
-
     function login() {
         loader();
-        let error = false;
-        const inputs = getInputs();
+        let inputs = ['username'];
 
-        error = animateInput(inputs);
-        if (error) {
+        if (vm.doRegistration)
+            inputs = [...inputs, 'password', 'name', 'phone'];
+        else if (vm.doLogin)
+            inputs = [...inputs, 'password'];
+
+        const valid = Utils.getInputsValidation(inputs);
+
+        if (!valid) {
             closeLoader();
             vm.error = 'Please fill out all fields';
-            setTimeout(() => {
-                inputs.map(input => input.input.removeClass('alert-effect'));
-            }, 500);
-            return false;
         } else {
             if (!vm.doRegistration && !vm.doLogin)
                 validateEmail(vm.loginData.username);
@@ -110,30 +98,5 @@ function LoginController(Resource, Utils, $scope, $location) {
             $scope.$apply(() => vm.errorMessage = error.data.message);
             closeLoader();
         }
-    }
-
-    function getInputs() {
-        const username = $('#username'),
-            password = $('#password'),
-            name = $('#name'),
-            phone = $('#phone');
-
-        let inputs = [
-            { input: username, status: (Utils.validateFieldEmpty(vm.loginData.username) && Utils.validateEmail(vm.loginData.username)) }
-        ];
-        if (vm.doLogin)
-            inputs = [
-                ...inputs,
-                { input: password, status: Utils.validateFieldEmpty(vm.loginData.password) }
-            ];
-        else if (vm.doRegistration)
-            inputs = [
-                ...inputs,
-                { input: password, status: Utils.validateFieldEmpty(vm.loginData.password) },
-                { input: name, status: (Utils.validateFieldEmpty(vm.loginData.name) && Utils.validateOnlyLetters(vm.loginData.name)) },
-                { input: phone, status: (Utils.validateFieldEmpty(vm.loginData.phone) && Utils.validatePhone(vm.loginData.phone)) }
-            ];
-
-        return inputs;
     }
 }

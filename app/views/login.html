@@ -9,18 +9,20 @@
                 <span ng-if="vm.submitValue !== 'Next'" ng-click="vm.reset();" class="glyphicon glyphicon-remove-circle red exit"></span>
             </div>
             <div class="form-group col-xs-12">
-                <input id="username" type="text" ng-readonly="vm.submitValue !== 'Next'" name="username" class="login-input" placeholder="E-mail"
-                    ng-model="vm.loginData.username" ng-required>
+                <input id="username" type="text" validates="email,empty" ng-readonly="vm.submitValue !== 'Next'" name="username" class="login-input"
+                    placeholder="E-mail" ng-model="vm.loginData.username" ng-required>
             </div>
             <div class="form-group col-xs-12" ng-if="vm.doLogin || vm.doRegistration">
-                <input id="password" type="password" name="password" class="login-input" placeholder="Password" ng-model="vm.loginData.password"
+                <input id="password" type="password" validates="empty" name="password" class="login-input" placeholder="Password" ng-model="vm.loginData.password"
                     ng-required>
             </div>
             <div class="form-group col-xs-12" ng-if="vm.doRegistration">
-                <input id="name" type="text" name="name" class="login-input" placeholder="Name" ng-model="vm.loginData.name" ng-required>
+                <input id="name" type="text" validates="letters,empty" name="name" class="login-input" placeholder="Name" ng-model="vm.loginData.name"
+                    ng-required>
             </div>
             <div class="form-group col-xs-12" ng-if="vm.doRegistration">
-                <input id="phone" type="number" name="phone" class="login-input" placeholder="Telephone" ng-model="vm.loginData.phone" ng-required>
+                <input id="phone" type="number" validates="phone,empty" name="phone" class="login-input" placeholder="Telephone" ng-model="vm.loginData.phone"
+                    ng-required>
             </div>
             <div class="form-group col-xs-12 text-center">
                 <label class="error message">{{vm.errorMessage}}</label>
