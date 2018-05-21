@@ -5,53 +5,61 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Transaction</h4>
             </div>
-            <form name="addressForm" ng-submit="uc.addAddress()">
-            <div class="modal-body">
-                
+            <form name="addressForm" ng-submit="uc.sendAddress()">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label>Account:</label>
+                            <label>Street:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="streetInput" ng-model="uc.addressData.street" name="streetInput" placeholder="street">
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label>Destination account:</label>
+                            <label>Number:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="000000000000">
+                            <input type="text" class="form-control" id="numberInput" ng-model="uc.addressData.number" name="numberInput" placeholder="number">
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label>CVV:</label>
+                            <label>City:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0000">
+                            <input type="text" class="form-control" id="cityInput" ng-model="uc.addressData.city" name="cityInput" placeholder="city">
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label>PIN:</label>
+                            <label>State:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="****">
+                            <input type="text" class="form-control" id="stateInput" ng-model="uc.addressData.state" name="stateInput" placeholder="state">
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label>Detail:</label>
+                            <label>Zip Code:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Detail">
+                            <input type="text" class="form-control" id="zipcodeInput" ng-model="uc.addressData.zipcode" name="zipcodeInput" placeholder="zip code">
                         </div>
                     </div>
-                
+
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Country:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="countryInput" ng-model="uc.addressData.country" name="countryInput" placeholder="country">
+                        </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

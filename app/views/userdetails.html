@@ -19,13 +19,6 @@
                     <div class="col-xs-8 col-md-9 text-left"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAddressWrap" >Add address</button></div>
 
                     <div ng-include="'views/modal/addAddress.html'"></div>
-
-                    <!-- <div class="col-xs-4 col-md-3 text-right">Email :</div>
-                    <div class="col-xs-8 col-md-9 text-left text-of">{{uc.users.email}}</div>
-                    <div class="col-xs-4 col-md-3 text-right">Phone :</div>
-                    <div class="col-xs-8 col-md-9 text-left">{{uc.users.phone}}</div>
-                    <div class="col-xs-4 col-md-3 text-right">Status :</div>
-                    <div class="col-xs-8 col-md-9 text-left {{uc.users.status === 1 ? '@brand-danger' : 'Inactiva'}}">{{uc.users.status === 1 ? 'Activa' : 'Inactiva'}}</div> -->
                 </div>
             </div>
         </div>
@@ -39,10 +32,9 @@
                 <table class="table table-striped mt-3">
                     <thead class="thead-ligth">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Account</th>
                             <th scope="col">Label</th>
                             <th scope="col">Type</th>
-                            <th scope="col">Number card</th>
                             <th scope="col">Expires</th>
                             <th scope="col">Amount</th>
                             <th scope="col"><button type="button" class="btn btn-primary btn-sm">Details</button></th>
@@ -50,10 +42,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in uc.users.accounts track by $index">
-                            <th scope="row" class="font-weight-normal">{{$index + 1}}</th>
+                            <th class="font-weight-normal">{{item.account}}</th>
                             <th class="font-weight-normal">{{item.label}}</th>
                             <th class="font-weight-normal">{{item.type}}</th>
-                            <th class="font-weight-normal">{{item.cardMask}}</th>
                             <th class="font-weight-normal">{{item.expires}}</th>
                             <th colspan="2" class="font-weight-normal">{{item.balance}}</th>
                         </tr>

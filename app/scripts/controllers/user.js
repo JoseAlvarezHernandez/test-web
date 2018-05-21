@@ -11,27 +11,60 @@ angular
   .module('moneyWeb')
   .controller('UserController', UserController);
 
-  UserController.$inject = ['Resource'];
+  UserController.$inject = ['Resource', 'Utils'];
 
-function UserController(Resource){
+function UserController(Resource, Utils){
   const uc = this;
-        // uc.users = [];
+  // variables
+  uc.addressData = {
+    street: '',
+    number: 0,
+    city: '',
+    state: '',
+    zipcode: 0,
+    country: '',
+  };
+  const token = localStorage.getItem('token');
+
 
   getUsers();
 
   function getUsers(){
-    return Resource.getUsers(localStorage.getItem('token'))
-      .then(function(res) {
+    return Resource.getUsers(token)
+      .then((res) => {
         uc.users = res.data;
         return uc.users;
       })
-      .catch(function(error){
+      .catch((error) => {
       });
   }
 
-  uc.addAddress = addAddress;
-  
-  function addAddress(){
-    uc.address = [];
+  uc.sendAddress = sendAddress;
+
+  function sendAddress(){
+    //  Utils.getValidateInputs(['streetInput', 'numberInput']);
+    Resource.addAddress(token, uc.addressData)
+      .then((res) => {
+        if(res.statusText == "Created"){
+          console.log(res);
+          uc.success = true;
+        }
+      })
+      .catch((error) => {
+          uc.error = true;
+      });
+  }
+
+  function animateInput(inputs) {
+    let status = false;
+    inputs.forEach((val) => {
+        if (!val.status) {
+            status = true;
+            val.input.addClass('alert-input alert-effect');
+        } else {
+            val.input.removeClass('alert-input');
+        }
+    }, this);
+    return status;
   }
 }
