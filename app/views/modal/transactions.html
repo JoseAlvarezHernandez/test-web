@@ -6,13 +6,13 @@
                 <h4 class="modal-title">Transaction</h4>
             </div>
             <div class="modal-body">
-                <form name="loginForm" ng-submit="tc.getAccountUser();">
+                <form name="myForm" ng-model="tc.myForm" ng-submit="tc.getAccountUser();">
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <label>Account:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <select class="form-control" name="selected" ng-model="tc.selected" ng-options="item as (item.label + ' - ' + (item.balance | currency)) for item in tc.items track by item.account">
+                            <select class="form-control" name="selected" ng-model="tc.transactions.selected" ng-options="item as (item.label + ' - ' + (item.balance | currency)) for item in tc.items track by item.account">
                             
                         </select>
                         </div>
@@ -23,7 +23,7 @@
                             <label>Destination account:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="desAccount" name="desAccount" ng-model="tc.desAccount" placeholder="000000000000">
+                            <input type="text" class="form-control" id="desAccount" name="desAccount" ng-model="tc.transactions.destAccount" placeholder="000000000000">
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
                             <label>CVV:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="cvv" name="cvv" ng-model="tc.cvv" placeholder="0000">
+                            <input type="password" class="form-control" id="cvv" name="cvv" ng-model="tc.transactions.cvv" placeholder="0000">
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                             <label>PIN:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="pin" name="pin" ng-model="tc.pin" placeholder="****">
+                            <input type="password" class="form-control" id="pin" name="pin" ng-model="tc.transactions.pin" placeholder="****">
                         </div>
                     </div>
 
@@ -50,13 +50,14 @@
                             <label>Detail:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="detail" name="detail" ng-model="tc.detail" placeholder="Detail">
+                            <input type="text" class="form-control" id="detail" name="detail" ng-model="tc.transactions.detail" placeholder="Detail">
                         </div>
                     </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <input type="submit" class="btn btn-success" data-dismiss="modal" value="Accept" />
+                <input type="submit" class="btn btn-success" data-dismiss="modal" ng-disabled="!tc.transactions.isValid" value="Accept" />
             </div>
             </form>
         </div>

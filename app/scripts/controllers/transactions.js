@@ -11,12 +11,12 @@ angular
     .module('moneyWeb')
     .controller('TransactionsController', TransactionsController);
 
-TransactionsController.$inject = ['Resource'];
+TransactionsController.$inject = ['$scope', 'Resource'];
 
 /**
  * @function TransactionsController
  */
-function TransactionsController(Resource) {
+function TransactionsController($scope, Resource) {
 
     const tc = this;
 
@@ -25,11 +25,38 @@ function TransactionsController(Resource) {
     tc.selected = { account: 0, label: 'Select one' };
     const token = localStorage.getItem('token');
     tc.size = null;
+    tc.transactions = {
+        selected: '',
+        destAccount: '',
+        cvv: '',
+        pin: '',
+        detail: '',
+        isValid: false
+    };
+
+    //Scopes
+    $scope.$watch(
+        () => {
+            return tc.transactions;
+        },
+        (newVal, oldVal) => {
+
+            if (newVal.selected.account !== 0 && newVal.selected.account !== undefined && newVal.cvv && newVal.destAccount && newVal.pin && newVal.detail) {
+                newVal.isValid = true;
+            } else {
+                newVal.isValid = false;
+            }
+
+
+        },
+        true
+    );
+
+
 
     //  Functions
     getAccountUser();
     tc.getAccounts = getAccounts;
-    tc.miFuncion = miFuncion;
     tc.getAccountUser = getAccountUser;
 
     function getAccountUser() {
@@ -71,17 +98,6 @@ function TransactionsController(Resource) {
             ];
     }
 
-    function animateInput(inputs) {
-        let status = false;
-        inputs.forEach((val) => {
-            if (!val.status) {
-                status = true;
-                val.input.addClass('alert-input alert-effect');
-            } else {
-                val.input.removeClass('alert-input');
-            }
-        }, this);
-        return status;
-    }
+
 
 }
