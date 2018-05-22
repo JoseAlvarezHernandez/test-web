@@ -17,9 +17,9 @@
                     </div>
                     <div class="credit_card_body">
                         <ul>
-                            <li>Account: {{card.account}}</li>
+                            <li>Account: {{card.account | secret}}</li>
                             <li>Balance: {{card.balance}}</li>
-                            <li>Card mask: {{card.cardMask}}</li>
+                            <li>Card mask: {{card.cardMask | secret }}</li>
                             <li>Type: {{card.type}}</li>
                         </ul>
                     </div>
