@@ -12,7 +12,7 @@
                             <label>Account:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <select class="form-control" name="selected" id="selected" validates="account" ng-model="tc.transactions.selected" ng-options="item as (item.label + ' - ' + (item.balance | currency)) for item in tc.items track by item.account">
+                            <select class="form-control" name="selected" id="selected" validates="empty,combo" ng-model="tc.transactions.selected" ng-options="item as (item.label + ' - ' + (item.balance | currency)) for item in tc.items track by item.account">
                             
                         </select>
                         </div>
@@ -23,7 +23,7 @@
                             <label>Destination account:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="desAccount" validates="empty,phone" name="desAccount" ng-model="tc.transactions.destAccount" placeholder="000000000000">
+                            <input type="text" class="form-control" id="desAccount" validates="empty,account" name="desAccount" ng-model="tc.transactions.destAccount" placeholder="000000000000">
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
                             <label>CVV:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="password" class="form-control" id="cvv" name="cvv" ng-model="tc.transactions.cvv" placeholder="0000">
+                            <input type="password" class="form-control" validates="empty,cvv" id="cvv" name="cvv" ng-model="tc.transactions.cvv" placeholder="0000">
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                             <label>PIN:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="password" class="form-control" id="pin" name="pin" ng-model="tc.transactions.pin" placeholder="****">
+                            <input type="password" class="form-control" id="pin" validates="empty,pin" name="pin" ng-model="tc.transactions.pin" placeholder="****">
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
                             <label>Detail:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="detail" name="detail" ng-model="tc.transactions.detail" placeholder="Detail">
+                            <input type="text" class="form-control" validates="empty" id="detail" name="detail" ng-model="tc.transactions.detail" placeholder="Detail">
                         </div>
                     </div>
             </div>

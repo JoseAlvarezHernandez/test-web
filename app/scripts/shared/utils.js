@@ -30,7 +30,6 @@ function Utils($window) {
         } else {
             fields.forEach(function(field, key) {
                 const input = document.getElementById(field);
-
                 inputs.push({ input, status: getValidate(input) });
             });
         }
@@ -39,7 +38,6 @@ function Utils($window) {
 
     function getValidate(input) {
         const validations = input.getAttribute('validates').split(',');
-        console.log(validations);
         const valid = validations.filter(validation => {
             let result = null;
 
@@ -58,6 +56,15 @@ function Utils($window) {
                     break;
                 case 'account':
                     result = validateAccount(input.value);
+                    break;
+                case 'combo':
+                    result = validateComboBox(input.value);
+                    break;
+                case 'cvv':
+                    result = validateCvv(input.value);
+                    break;
+                case 'pin':
+                    result = validatePin(input.value);
                     break;
             };
             return result;
@@ -110,12 +117,19 @@ function Utils($window) {
         return /([^\s])/img.test(field);
     }
 
-    function validateAccount(field) {
+    function validateAccount(account) {
+        return /^([0-9]{6}|[0-9]{16}|[0-9]{18})$/img.test(account);
+    }
 
-        if (field.account === '0') {
-            return false;
-        }
+    function validateComboBox(value) {
+        return value !== 'A99';
+    }
 
-        return true;
+    function validateCvv(cvv) {
+        return /^([0-9]{3})$/img.test(cvv);
+    }
+
+    function validatePin(pin) {
+        return /^([0-9]{4})$/img.test(pin);
     }
 }

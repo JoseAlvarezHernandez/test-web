@@ -22,11 +22,11 @@ function TransactionsController($scope, Resource, Utils) {
 
     //Variables
 
-    tc.selected = { account: 0, label: 'Select one' };
+    tc.selected = { account: 'A99', label: 'Select one' };
     const token = localStorage.getItem('token');
     tc.size = null;
     tc.transactions = {
-        selected: '',
+        selected: { account: 'A99', label: 'Select one' },
         destAccount: '',
         cvv: '',
         pin: '',
@@ -43,7 +43,7 @@ function TransactionsController($scope, Resource, Utils) {
             if (!tc.items)
                 return;
 
-            if (Utils.getInputsValidation(['selected', 'desAccount', 'selected', 'cvv']))
+            if (Utils.getInputsValidation(['selected', 'desAccount', 'pin', 'cvv', 'detail']))
                 newVal.isValid = true;
             else
                 newVal.isValid = false;
@@ -82,22 +82,10 @@ function TransactionsController($scope, Resource, Utils) {
             .then(function(result) {
 
                 tc.reqAccounts = result.data.accounts;
-                tc.items = [{ account: 0, label: 'Select one' }, ...tc.reqAccounts];
+                tc.items = [{ account: 'A99', label: 'Select one' }, ...tc.reqAccounts];
 
             });
 
     }
-
-    function miFuncion() {
-        let username = $('#username'),
-            password = $('#password'),
-            name = $('#name'),
-            phone = $('#phone'),
-            inputs = [
-                { input: username, status: (Utils.validateFieldEmpty(vm.loginData.username) && Utils.validateEmail(vm.loginData.username)) }
-            ];
-    }
-
-
 
 }
