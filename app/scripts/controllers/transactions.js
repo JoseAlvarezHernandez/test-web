@@ -11,12 +11,12 @@ angular
     .module('moneyWeb')
     .controller('TransactionsController', TransactionsController);
 
-TransactionsController.$inject = ['$scope', 'Resource'];
+TransactionsController.$inject = ['$scope', 'Resource', 'Utils'];
 
 /**
  * @function TransactionsController
  */
-function TransactionsController($scope, Resource) {
+function TransactionsController($scope, Resource, Utils) {
 
     const tc = this;
 
@@ -40,13 +40,13 @@ function TransactionsController($scope, Resource) {
             return tc.transactions;
         },
         (newVal, oldVal) => {
+            if (!tc.items)
+                return;
 
-            if (newVal.selected.account !== 0 && newVal.selected.account !== undefined && newVal.cvv && newVal.destAccount && newVal.pin && newVal.detail) {
+            if (Utils.getInputsValidation(['selected', 'desAccount', 'selected', 'cvv']))
                 newVal.isValid = true;
-            } else {
+            else
                 newVal.isValid = false;
-            }
-
 
         },
         true

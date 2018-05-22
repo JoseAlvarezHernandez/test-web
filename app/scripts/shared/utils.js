@@ -28,7 +28,7 @@ function Utils($window) {
 
             inputs.push({ input, status: getValidate(input) });
         } else {
-            fields.forEach(function (field, key) {
+            fields.forEach(function(field, key) {
                 const input = document.getElementById(field);
 
                 inputs.push({ input, status: getValidate(input) });
@@ -39,6 +39,7 @@ function Utils($window) {
 
     function getValidate(input) {
         const validations = input.getAttribute('validates').split(',');
+        console.log(validations);
         const valid = validations.filter(validation => {
             let result = null;
 
@@ -54,6 +55,9 @@ function Utils($window) {
                     break;
                 case 'phone':
                     result = validatePhone(input.value);
+                    break;
+                case 'account':
+                    result = validateAccount(input.value);
                     break;
             };
             return result;
@@ -104,5 +108,14 @@ function Utils($window) {
 
     function validateFieldEmpty(field) {
         return /([^\s])/img.test(field);
+    }
+
+    function validateAccount(field) {
+
+        if (field.account === '0') {
+            return false;
+        }
+
+        return true;
     }
 }
