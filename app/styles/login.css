@@ -51,3 +51,20 @@ input:-webkit-autofill {
 .login-submit{
     width: 50%;
 }
+.navbar{
+    margin-bottom: 0px !important;
+}
+.background-login{
+    background-color: #65b7cc;
+    background-image: url(../images/login.jpg);
+    background-size: auto;
+    height: 100%;
+    position: fixed;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+
+.login-container{
+    float: right;
+}

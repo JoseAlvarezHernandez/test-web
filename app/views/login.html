@@ -1,10 +1,43 @@
-<div class="col-md-12 col-xs-12">&nbsp;</div>
-<div class="col-md-12 hidden-xs">&nbsp;</div>
-<div class="col-md-12 col-xs-12">
-    <div class="col-md-2 hidden-xs">&nbsp;</div>
+<div class="col-md-8 hidden-xs no-padding background-login">&nbsp;</div>
+<div class="col-md-4 col-xs-12 login-container">
+    <div class="col-md-12">&nbsp;</div>
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
+    <form class="col-md-12 col-xs-12 login-form" name="loginForm" ng-submit="vm.login();">
+        <div class="col-xs-12 text-right padding">
+            <span ng-if="vm.submitValue !== 'Next'" ng-click="vm.reset();" class="glyphicon glyphicon-remove-circle red exit"></span>
+        </div>
+        <div class="form-group col-xs-12">
+            <input id="username" type="text" validates="email,empty" ng-readonly="vm.submitValue !== 'Next'" name="username" class="login-input"
+                placeholder="E-mail" ng-model="vm.loginData.username" ng-required>
+        </div>
+        <div class="form-group col-xs-12" ng-if="vm.doLogin || vm.doRegistration">
+            <input id="password" type="password" validates="empty" name="password" class="login-input" placeholder="Password" ng-model="vm.loginData.password"
+                ng-required>
+        </div>
+        <div class="form-group col-xs-12" ng-if="vm.doRegistration">
+            <input id="name" type="text" validates="letters,empty" name="name" class="login-input" placeholder="Name" ng-model="vm.loginData.name"
+                ng-required>
+        </div>
+        <div class="form-group col-xs-12" ng-if="vm.doRegistration">
+            <input id="phone" type="number" validates="phone,empty" name="phone" class="login-input" placeholder="Telephone" ng-model="vm.loginData.phone"
+                ng-required>
+        </div>
+        <div class="form-group col-xs-12 text-center">
+            <label class="error message">{{vm.errorMessage}}</label>
+        </div>
+        <div class="form-group col-xs-12 text-center">
+            <input type="submit" class="btn btn-info login-submit" value="{{vm.submitValue}}" />
+        </div>
+    </form>
+</div>
+<!--
+<div class="col-md-4 col-xs-12">
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
+    <div class="col-md-12 hidden-xs">&nbsp;</div>
     <div class="col-md-12 col-xs-12 login-content">
-        <div class="col-md-4 hidden-xs">&nbsp;</div>
-        <form class="col-md-4 col-xs-12 login-form" name="loginForm" ng-submit="vm.login();">
+        <form class="col-md-12 col-xs-12 login-form" name="loginForm" ng-submit="vm.login();">
             <div class="col-xs-12 text-right padding">
                 <span ng-if="vm.submitValue !== 'Next'" ng-click="vm.reset();" class="glyphicon glyphicon-remove-circle red exit"></span>
             </div>
@@ -31,6 +64,6 @@
                 <input type="submit" class="btn btn-info login-submit" value="{{vm.submitValue}}" />
             </div>
         </form>
-        <div class="col-md-4 hidden-xs">&nbsp;</div>
     </div>
 </div>
+-->
