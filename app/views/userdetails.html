@@ -5,14 +5,45 @@
             <div class="panel-heading">User details</div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-4 col-md-3 text-right">Name :</div>
-                    <div class="col-xs-8 col-md-9 text-left">{{uc.users.name}}</div>
-                    <div class="col-xs-4 col-md-3 text-right">Email :</div>
-                    <div class="col-xs-8 col-md-9 text-left text-of">{{uc.users.email}}</div>
-                    <div class="col-xs-4 col-md-3 text-right">Phone :</div>
-                    <div class="col-xs-8 col-md-9 text-left">{{uc.users.phone}}</div>
-                    <div class="col-xs-4 col-md-3 text-right">Status :</div>
-                    <div class="col-xs-8 col-md-9 text-left {{uc.users.status === 1 ? '@brand-danger' : 'Inactiva'}}">{{uc.users.status === 1 ? 'Activa' : 'Inactiva'}}</div>
+                    <div class="col-xs-12 col-md-6 mb-2">
+                        <div class="col-xs-6 col-sm-4 col-md-3 text-right">Name :</div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.users.name}}</div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 text-right">Email :</div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.users.email}}</div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 text-right">Phone :</div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.users.phone}}</div>
+                        <div class="col-xs-6 col-sm-4 col-md-3 text-right">Status :</div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 text-left pl-3 pr-3 ellipsis"><span ng-class="uc.users.status == 1 ? 'text-success' : 'text-danger'"><strong>{{uc.users.status === 1 ? 'Activa' : 'Inactiva'}}</strong></span></div>
+                    </div>
+                    <div class="col-xs-12 hidden-md hidden-lg">
+                        <hr>
+                    </div>
+                    <div class="col-xs-12 col-md-6" ng-if="uc.user.address">
+                        <div class="col-xs-6 col-sm-4 col-md-3 text-right">Address :</div>
+                        <div class="col-xs-6 col-sm-8 col-md-9 text-left"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAddressWrap">Add address</button></div>
+    
+                        <div ng-include="'views/modal/addAddress.html'"></div>
+                    </div>
+                    <div class="col-xs-12 col-md-6" ng-if="!uc.user.address">
+                        <div class="d-block clearfix">
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">Street :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.street}}</div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">Number :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.number}}</div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">City :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.city}}</div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">State :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.state}}</div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">Zipcode :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.zipcode}}</div>
+                            <div class="col-xs-6 col-sm-4 col-md-3 text-right">Country :</div>
+                            <div class="col-xs-6 col-sm-8 col-md-9 text-left ellipsis">{{uc.addressData.country}}</div>
+                        </div>
+                        <div class="d-block clearfix mt-2">
+                            <div class="col-xs-12 col-sm-12 col-md-6"><button type="button" class="btn btn-primary btn-sm show centered" data-toggle="modal" data-target="#addAddressWrap">Edit address</button></div>        
+                            <div ng-include="'views/modal/addAddress.html'"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,19 +51,15 @@
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Accounts details</div>
-            <!-- <div class="panel-body">
-                <p>...</p>
-            </div> -->
-            
+
             <!-- Table -->
             <div class="table-responsive">
                 <table class="table table-striped mt-3">
                     <thead class="thead-ligth">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Account</th>
                             <th scope="col">Label</th>
                             <th scope="col">Type</th>
-                            <th scope="col">Number card</th>
                             <th scope="col">Expires</th>
                             <th scope="col">Amount</th>
                             <th scope="col"><button type="button" class="btn btn-primary btn-sm">Details</button></th>
@@ -40,10 +67,9 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in uc.users.accounts track by $index">
-                            <th scope="row" class="font-weight-normal">{{$index + 1}}</th>
+                            <th class="font-weight-normal">{{item.account}}</th>
                             <th class="font-weight-normal">{{item.label}}</th>
                             <th class="font-weight-normal">{{item.type}}</th>
-                            <th class="font-weight-normal">{{item.cardMask}}</th>
                             <th class="font-weight-normal">{{item.expires}}</th>
                             <th colspan="2" class="font-weight-normal">{{item.balance}}</th>
                         </tr>
