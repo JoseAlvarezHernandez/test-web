@@ -42,9 +42,14 @@ function CardsController(Resource, Utils) {
     // variables
     cc.newCardModal = '../views/modal/card-form.html';
     cc.cards = [];
-    cc.cardTypes = ['Select one', 'Credit card', 'Debit card'];
-    cc.cardData = { account: '', balance: '', type: cc.cardTypes[0], cardMask: '', cvv: '', label: '', expires: '', pin: '' };
-    cc.errorMessage = '';
+    cc.monthSelected = { month: 'A99', label: 'mm' };
+    cc.yearSelected = { year: 'A99', label: 'yyyy' };
+    cc.cardSelected = { card: 'A99', label: 'Select one' };
+    cc.cardTypes = getCardsCombo();
+    cc.months = getMonths();
+    cc.years = getYears();
+    cc.cardData = { account: '', balance: '', type: '', cardMask: '', cvc: '', label: '', expires: '', pin: '' };
+    cc.auxMessage = '';
 
     //functions
     cc.saveCard = saveCard;
@@ -64,72 +69,73 @@ function CardsController(Resource, Utils) {
     }
 
     function saveCard() {
-        console.log("holaaaaaaaa");
 
-        
-        let error = false;
-        const inputs = getInputs();
-
-        error = animateInput(inputs);
-
-        if (error) {
-            cc.error = 'Please fill out all fields';
-            setTimeout(() => {
-                inputs.map(input => input.input.removeClass('alert-effect'));
-            }, 500);
-            return false;
-        }else{
+        if (Utils.getInputsValidation(['account', 'type', 'balance', 'cardMask','label','pin','cvv','year', 'month'])) {
+            cc.cardData.expires = `${cc.monthSelected.month }${cc.yearSelected.year}`;
+            cc.cardData.type = cc.cardSelected.card;
+            
             Resource.createCard(localStorage.getItem('token'), cc.cardData)
             .then(function (res) {
                 getCards();
+                reset();
+                cc.auxMessage = '';
             })
             .catch(err=>{
-                console.log(err);
+                cc.auxMessage = err.data.message;
                 
-            })
+            });
+        }else{
+            cc.auxMessage = 'Please fill out all fields';
+            
+            setTimeout(() => {
+                inputs.map(input => input.input.removeClass('alert-effect'));
+            }, 500);
         }
+
     }
 
     function reset() {
-        cc.cardData = { account: '', balance: '', type: cc.cardTypes[0], cardMask: '', cvv: '', label: '', expires: '', pin: '' };
-        cc.submitValue = 'Next';
-        cc.errorMessage = '';
+        cc.cardData = { account: '', balance: '', type: '', cardMask: '', cvv: '', label: '', expires: '', pin: '' };
+        cc.monthSelected = { month: 'A99', label: 'mm' };
+        cc.yearSelected = { year: 'A99', label: 'yyyy' };
+        cc.cardSelected = { card: 'A99', label: 'Select one' };
     }
 
-    function animateInput(inputs) {
-        let status = false;
-        inputs.forEach((val) => {
-            if (!val.status) {
-                status = true;
-                val.input.addClass('alert-input alert-effect');
-            } else {
-                val.input.removeClass('alert-input');
-            }
-        }, this);
-        return status;
+    function getYears(){
+        const year = new Date().getFullYear();
+        let range = [];
+        range.push(cc.yearSelected );
+        range.push({ year: String(year).substring(2) , label: year});
+        for (let i = 1; i < 7; i++) {
+            range.push({ year: String(year + i).substring(2) , label: year + i });
+        }
+        return range;
     }
 
-    function getInputs() {
-        const account = $('#account'),
-        type = $('#type'),
-        balance = $('#balance'),
-        cardMask = $('#cardMask'),
-        expires = $('#expires'),
-        label = $('#label'),
-        pin = $('#pin'),
-        cvv = $('#cvv');
-
-        let inputs = [
-            { input: account, status: Utils.validateFieldEmpty(cc.cardData.account) },
-            { input: type, status: Utils.validateFieldEmpty(cc.cardData.type) },
-            { input: balance, status: Utils.validateFieldEmpty(cc.cardData.balance) },
-            { input: cardMask, status: Utils.validateFieldEmpty(cc.cardData.cardMask) },
-            { input: cvv, status: Utils.validateFieldEmpty(cc.cardData.cvv) },
-            { input: expires, status: Utils.validateFieldEmpty(cc.cardData.expires) },
-            { input: label, status: Utils.validateFieldEmpty(cc.cardData.label) },
-            { input: pin, status: Utils.validateFieldEmpty(cc.cardData.pin) }
+    function getMonths(){
+        return [
+            cc.monthSelected,
+            { month: '01', label: '01' },
+            { month: '02', label: '02' },
+            { month: '03', label: '03' },
+            { month: '04', label: '04' },
+            { month: '05', label: '05' },
+            { month: '06', label: '06' },
+            { month: '07', label: '07' },
+            { month: '08', label: '08' },
+            { month: '09', label: '09' },
+            { month: '10', label: '10' },
+            { month: '11', label: '11' },
+            { month: '12', label: '12' }
         ];
+    }
 
-        return inputs;
+    function getCardsCombo(){
+        return [
+            cc.cardSelected ,
+            {card: 'Credit card', label: 'Credit card'},
+            {card: 'Debit card', label: 'Debit card'}
+        ];
     }
 }
+

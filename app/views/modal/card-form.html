@@ -9,54 +9,32 @@
                 <h5 class="modal-title" id="cardModalLabel">New Card</h5>
             </div>
             <form ng-submit="cc.saveCard();" name="cardForm">
-            <div class="modal-body">
-                
+                <div class="modal-body">
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <input 
-                                ng-model="cc.cardData.account" 
-                                type="text" 
-                                class="form-control" 
-                                name="account" 
-                                id="account" 
-                                placeholder="account" 
-                                ng-required
-                                maxlength="6" minlength="6"
-                                >
-                                
+                                <input ng-model="cc.cardData.account" type="number" class="form-control" name="account" id="account" placeholder="account"
+                                    ng-required maxlength="6" minlength="6" validates="empty,account">
+
                             </div>
                             <div class="form-group">
-                                <select 
-                                ng-model="cc.cardData.type" 
-                                class="form-control" 
-                                name="type" id="type" 
-                                ng-options="cardType as cardType for cardType in cc.cardTypes"
-                                ng-required></select>
+                                <select ng-model="cc.cardSelected" class="form-control" name="type" id="type" ng-options="item as item.label for item in cc.cardTypes track by item.card"
+                                    ng-required validates="empty,combo"></select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <input ng-model="cc.cardData.balance" 
-                                type="number" class="form-control" 
-                                name="balance" 
-                                id="balance" 
-                                placeholder="balance"
-                                ng-required>
+                                <input ng-model="cc.cardData.balance" type="number" class="form-control" name="balance" id="balance" placeholder="balance"
+                                    ng-required validates="empty">
 
                             </div>
                             <div class="form-group">
 
-                                <input ng-model="cc.cardData.cardMask" 
-                                type="number" 
-                                class="form-control" 
-                                name="cardMask" 
-                                id="cardMask" 
-                                placeholder="cardMask"
-                                max="16" min="16"
-                                ng-required>
+                                <input ng-model="cc.cardData.cardMask" type="number" class="form-control" name="cardMask" id="cardMask" placeholder="cardMask"
+                                    maxlength="16" minlength="16" ng-required validates="empty,account">
 
                             </div>
                         </div>
@@ -64,64 +42,43 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <input ng-model="cc.cardData.cvv" 
-                                type="text" 
-                                class="form-control" 
-                                name="cvv" id="cvv" 
-                                placeholder="cvv"
-                                ng-required
-                                maxlength="4" minlength="4">
+                                <input ng-model="cc.cardData.cvc" type="number" class="form-control" name="cvv" id="cvv" placeholder="cvv" ng-required validates="empty,cvv">
 
                             </div>
-                            <div class="form-group">
-
-                                <input ng-model="cc.cardData.expires" 
-                                type="text" 
-                                class="form-control" 
-                                name="expires" 
-                                id="expires" 
-                                placeholder="expires"
-                                ng-required
-                                maxlength="4" minlength="4">
-
+                            <div class="form-group col-md-6">
+                                <select ng-model="cc.monthSelected" class="form-control" name="month" id="month" ng-options="item as item.label for item in cc.months track by item.month"
+                                    ng-required validates="empty,combo"></select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select ng-model="cc.yearSelected" class="form-control" name="year" id="year" ng-options="item as item.label for item in cc.years track by item.year"
+                                    ng-required validates="empty,combo"></select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <input ng-model="cc.cardData.label"
-                                type="text" class="form-control"
-                                name="label"
-                                id="label"
-                                placeholder="label"
-                                ng-required
-                                maxlength="50">
+                                <input ng-model="cc.cardData.label" type="text" class="form-control" name="label" id="label" placeholder="label" ng-required
+                                    maxlength="50" validates="empty">
 
                             </div>
                             <div class="form-group">
 
-                                <input ng-model="cc.cardData.pin"
-                                type="password" 
-                                class="form-control" 
-                                name="pin"
-                                id="pin"
-                                placeholder="pin"
-                                ng-required
-                                maxlength="4" minlength="4">
+                                <input ng-model="cc.cardData.pin" type="number" class="form-control" name="pin" id="pin" placeholder="pin" ng-required maxlength="4"
+                                    minlength="4" validates="empty,pin">
 
                             </div>
                         </div>
                     </div>
-                
-            </div>
-            <div class="modal-footer">
-                <div class="form-group col-xs-12 text-center">
-                    <p class="error message">{{cc.error}}</p>
+
                 </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" >Save</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <div class="form-group col-xs-12 text-center">
+                        <p class="error message">{{cc.auxMessage}}</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 
