@@ -50,6 +50,7 @@ function CardsController(Resource, Utils) {
     cc.years = getYears();
     cc.cardData = { account: '', balance: '', type: '', cardMask: '', cvc: '', label: '', expires: '', pin: '' };
     cc.auxMessage = '';
+    cc.isValid = false;
 
     //functions
     cc.saveCard = saveCard;
@@ -71,6 +72,7 @@ function CardsController(Resource, Utils) {
     function saveCard() {
 
         if (Utils.getInputsValidation(['account', 'type', 'balance', 'cardMask','label','pin','cvv','year', 'month'])) {
+            cc.isValid = true;
             cc.cardData.expires = `${cc.monthSelected.month }${cc.yearSelected.year}`;
             cc.cardData.type = cc.cardSelected.card;
 
@@ -79,12 +81,14 @@ function CardsController(Resource, Utils) {
                 getCards();
                 reset();
                 cc.auxMessage = '';
+                closeModal();
             })
             .catch(err=>{
                 cc.auxMessage = err.data.message;
 
             });
         }else{
+            cc.isValid = false;            
             cc.auxMessage = 'Please fill out all fields';
 
             setTimeout(() => {
@@ -136,5 +140,9 @@ function CardsController(Resource, Utils) {
             {card: 'Credit card', label: 'Credit card'},
             {card: 'Debit card', label: 'Debit card'}
         ];
+    }
+
+    function closeModal(){
+        $('#btnClose').click();
     }
 }
