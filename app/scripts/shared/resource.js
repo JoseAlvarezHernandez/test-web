@@ -19,6 +19,8 @@ function Resource($http, env) {
         addFavorites,
         getCards,
         createCard,
+        getFavorites,
+        addAddress,
     };
 
     function validateEmail(email) {
@@ -63,7 +65,7 @@ function Resource($http, env) {
     }
 
     function getUsers(token) {
-        let http = {
+        const http = {
             method: 'GET',
             url: `${env.api}users`,
             headers: {
@@ -129,4 +131,30 @@ function Resource($http, env) {
         return $http(http);
     }
 
+    function getFavorites(token) {
+        const http = {
+            method: 'GET',
+            url: `${env.api}users/favorites`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        };
+        return $http(http);
+    }
+
+    function addAddress(token, data) {
+        const http = {
+            method: 'PUT',
+            url: `${env.api}users/address`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            data
+        };
+        return $http(http);
+    }
 }

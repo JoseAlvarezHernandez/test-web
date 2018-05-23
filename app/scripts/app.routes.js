@@ -8,7 +8,7 @@ routes.$inject = ['$routeProvider', '$locationProvider'];
  */
 function routes($routeProvider, $locationProvider) {
     $routeProvider
-        .when('/', {
+        .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController as vm',
         })
@@ -29,6 +29,8 @@ function routes($routeProvider, $locationProvider) {
             controller: 'TransactionsController as tc',
         })
         .otherwise({
-            redirectTo: '/',
+            templateUrl: 'views/404.html',
         });
+
+    $locationProvider.html5Mode({ enabled: true, requireBase: false });
 }
