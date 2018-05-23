@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Transaction</h4>
+                <h4 class="modal-title">Address</h4>
             </div>
             <form name="addressForm" ng-submit="uc.sendAddress()">
                 <div class="modal-body">
@@ -12,7 +12,7 @@
                             <label>Street:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="streetInput" ng-model="uc.addressData.street" name="streetInput" placeholder="street">
+                            <input type="text" class="form-control" validates="empty" id="streetInput" ng-model="uc.addressData.street" name="streetInput" placeholder="street">
                         </div>
                     </div>
 
@@ -21,7 +21,7 @@
                             <label>Number:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="numberInput" ng-model="uc.addressData.number" name="numberInput" placeholder="number">
+                            <input type="text" class="form-control" validates="empty" id="numberInput" ng-model="uc.addressData.number" name="numberInput" placeholder="number">
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@
                             <label>City:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="cityInput" ng-model="uc.addressData.city" name="cityInput" placeholder="city">
+                            <input type="text" class="form-control" validates="empty" id="cityInput" ng-model="uc.addressData.city" name="cityInput" placeholder="city">
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                             <label>State:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="stateInput" ng-model="uc.addressData.state" name="stateInput" placeholder="state">
+                            <input type="text" class="form-control" validates="empty" id="stateInput" ng-model="uc.addressData.state" name="stateInput" placeholder="state">
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                             <label>Zip Code:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="zipcodeInput" ng-model="uc.addressData.zipcode" name="zipcodeInput" placeholder="zip code">
+                            <input type="text" class="form-control" validates="empty" id="zipcodeInput" ng-model="uc.addressData.zipcode" name="zipcodeInput" placeholder="zip code">
                         </div>
                     </div>
 
@@ -57,13 +57,13 @@
                             <label>Country:</label>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-                            <input type="text" class="form-control" id="countryInput" ng-model="uc.addressData.country" name="countryInput" placeholder="country">
+                            <input type="text" class="form-control" validates="empty" id="countryInput" ng-model="uc.addressData.country" name="countryInput" placeholder="country">
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <input type="submit" class="btn  btn-success" value="Confirm" />
+                <input type="button" class="btn btn-danger" data-dismiss="modal" ng-click="uc.getAddress()" value="Cancel"/>
+                <button class="btn  btn-success">Confirm</button>
             </div>
         </form>
         </div>

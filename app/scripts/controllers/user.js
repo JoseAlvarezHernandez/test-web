@@ -26,8 +26,8 @@ function UserController(Resource, Utils){
   };
   const token = localStorage.getItem('token');
 
-
   getUsers();
+  getAddress();
 
   function getUsers(){
     return Resource.getUsers(token)
@@ -40,31 +40,33 @@ function UserController(Resource, Utils){
   }
 
   uc.sendAddress = sendAddress;
+  uc.getAddress = getAddress;
 
   function sendAddress(){
-    //  Utils.getValidateInputs(['streetInput', 'numberInput']);
-    Resource.addAddress(token, uc.addressData)
-      .then((res) => {
-        if(res.statusText == "Created"){
-          console.log(res);
-          uc.success = true;
-        }
-      })
-      .catch((error) => {
-          uc.error = true;
-      });
+    let inputs = ['streetInput', 'numberInput', 'cityInput', 'stateInput', 'zipcodeInput', 'countryInput'];
+    const valid = Utils.getInputsValidation(inputs);
+
+    if (!valid) {
+      uc.error = 'Please fill out all fields';
+    } else {
+      Resource.addAddress(token, uc.addressData)
+        .then((res) => {
+          if(res.statusText == "Created"){
+            uc.success = true;
+          }
+        })
+        .catch((error) => {
+            uc.error = true;
+        });
+    }
   }
 
-  function animateInput(inputs) {
-    let status = false;
-    inputs.forEach((val) => {
-        if (!val.status) {
-            status = true;
-            val.input.addClass('alert-input alert-effect');
-        } else {
-            val.input.removeClass('alert-input');
-        }
-    }, this);
-    return status;
+  function getAddress(){
+    return Resource.getUsers(token)
+      .then((res) => {
+          uc.addressData = res.data.address[res.data.address.length-1];
+      })
+      .catch((error) => {
+      });
   }
 }
