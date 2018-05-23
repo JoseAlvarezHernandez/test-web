@@ -58,7 +58,7 @@ function FavoritesController(Resource, $scope, Utils) {
     async function addFavorite() {
         loader();
         try {
-            const fav = await Resource.addFavorites(fc.token, null);
+            const fav = await Resource.addFavorites(fc.token, fc.favorite);
             bootbox.alert({ message: fav.data.message, size: 'small' });
             fc.favorite = {};
             getFavorites();
