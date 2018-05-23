@@ -126,7 +126,7 @@ function Utils($window) {
     }
 
     function validateCvv(cvv) {
-        return /^([0-9]{3})$/img.test(cvv);
+        return /^([0-9]{4})$/img.test(cvv);
     }
 
     function validatePin(pin) {

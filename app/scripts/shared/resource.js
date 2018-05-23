@@ -17,6 +17,8 @@ function Resource($http, env) {
         getUsers,
         getAccountUser,
         addFavorites,
+        getCards,
+        createCard,
     };
 
     function validateEmail(email) {
@@ -82,6 +84,33 @@ function Resource($http, env) {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`,
             }
+        };
+        return $http(http);
+    }
+
+    function getCards(token) {
+        const http = {
+            method: 'GET',
+            url: `${env.api}accounts`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        };
+        return $http(http);
+    }
+
+    function createCard(token, data) {
+        const http = {
+            method: 'POST',
+            url: `${env.api}accounts`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            data
         };
         return $http(http);
     }
