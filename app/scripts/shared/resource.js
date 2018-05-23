@@ -17,6 +17,7 @@ function Resource($http, env) {
         getUsers,
         getAccountUser,
         addFavorites,
+        getFavorites,
         addAddress,
     };
 
@@ -97,6 +98,19 @@ function Resource($http, env) {
                 'Authorization': `Bearer ${token}`,
             },
             data
+        };
+        return $http(http);
+    }
+
+    function getFavorites(token) {
+        const http = {
+            method: 'GET',
+            url: `${env.api}users/favorites`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
         };
         return $http(http);
     }
