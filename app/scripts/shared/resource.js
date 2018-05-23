@@ -17,6 +17,7 @@ function Resource($http, env) {
         getUsers,
         getAccountUser,
         addFavorites,
+        getFavorites,
     };
 
     function validateEmail(email) {
@@ -100,4 +101,16 @@ function Resource($http, env) {
         return $http(http);
     }
 
+    function getFavorites(token) {
+        const http = {
+            method: 'GET',
+            url: `${env.api}users/favorites`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+        };
+        return $http(http);
+    }
 }

@@ -28,7 +28,7 @@ function Utils($window) {
 
             inputs.push({ input, status: getValidate(input) });
         } else {
-            fields.forEach(function(field, key) {
+            fields.forEach(function (field, key) {
                 const input = document.getElementById(field);
                 inputs.push({ input, status: getValidate(input) });
             });
@@ -65,6 +65,9 @@ function Utils($window) {
                     break;
                 case 'pin':
                     result = validatePin(input.value);
+                    break;
+                case 'amount':
+                    result = validateAmount(input.value);
                     break;
             };
             return result;
@@ -131,5 +134,9 @@ function Utils($window) {
 
     function validatePin(pin) {
         return /^([0-9]{4})$/img.test(pin);
+    }
+
+    function validateAmount(amount) {
+        return !isNaN(amount) && amount > 0;
     }
 }

@@ -8,21 +8,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#!/user" class="navbar-brand">BANK</a>
+            <a href="user" class="navbar-brand">BANK</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
             <ul class="nav navbar-nav" ng-if="hc.isLogged">
                 <li ng-class="hc.path == '/user' ? 'active' : ''">
-                    <a href="#!/user">Home</a>
+                    <a href="user">Home</a>
                 </li>
                 <li ng-class="hc.path == '/cards' ? 'active' : ''">
-                    <a href="#!/cards">Cards</a>
+                    <a href="cards">Cards</a>
                 </li>
                 <li ng-class="hc.path == '/transactions' ? 'active' : ''">
-                    <a href="#!/transactions">Transactions</a>
+                    <a href="transactions">Transactions</a>
                 </li>
                 <li ng-class="hc.path == '/favorites' ? 'active' : ''">
-                    <a href="#!/favorites">Favorites</a>
+                    <a href="favorites">Favorites</a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" ng-click="hc.logout()">
