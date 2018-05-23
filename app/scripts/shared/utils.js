@@ -1,29 +1,8 @@
 'use strict';
 
-const secret = () => {
-    return value => {
-        let cad = String(value);
-        let aux = "";
-
-        if (cad) {
-            for(let i =0 ;i < cad.length; i++){
-                if (i<cad.length-3) {
-                    aux +="*";
-                }else{
-                    aux += cad[i];
-                }
-            }
-            return aux;
-        }else{
-            return value;
-        }
-    };
-  };
-
 angular
     .module('moneyWeb')
-    .factory('Utils', Utils)
-    .filter('secret', secret);
+    .factory('Utils', Utils);
 
 Utils.$inject = ['$window'];
 
@@ -150,7 +129,7 @@ function Utils($window) {
     }
 
     function validateCvv(cvv) {
-        return /^([0-9]{4})$/img.test(cvv);
+        return /^([0-9]{3})$/img.test(cvv);
     }
 
     function validatePin(pin) {

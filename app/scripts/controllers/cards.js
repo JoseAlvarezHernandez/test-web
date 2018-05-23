@@ -65,14 +65,13 @@ function CardsController($scope,Resource, Utils) {
         Resource.getCards(token)
             .then(function (res) {
                 cc.cards = res.data;
-                return cc.cards;
             });
     }
 
     function saveCard() {
 
             cc.isValid = true;
-            cc.cardData.expires = `${cc.monthSelected.month }${cc.yearSelected.year}`;
+            cc.cardData.expires = `${cc.monthSelected.month }-${cc.yearSelected.year}`;
             cc.cardData.type = cc.cardSelected.card;
 
             Resource.createCard(token, cc.cardData)
@@ -90,7 +89,7 @@ function CardsController($scope,Resource, Utils) {
     }
 
     function reset() {
-        cc.cardData = { account: '', balance: '', type: '', cardMask: '', cvv: '', label: '', expires: '', pin: '' };
+        cc.cardData = { };
         cc.monthSelected = { month: 'A99', label: 'mm' };
         cc.yearSelected = { year: 'A99', label: 'yyyy' };
         cc.cardSelected = { card: 'A99', label: 'Select one' };
@@ -98,9 +97,8 @@ function CardsController($scope,Resource, Utils) {
 
     function getYears(){
         const year = new Date().getFullYear();
-        let range = [];
-        range.push(cc.yearSelected );
-        range.push({ year: String(year).substring(2) , label: year});
+        let range = [cc.yearSelected, { year: String(year).substring(2) , label: year}];
+ 
         for (let i = 1; i < LIMIT_YEARS; i++) {
             range.push({ year: String(year + i).substring(2) , label: year + i });
         }
