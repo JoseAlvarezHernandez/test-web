@@ -12,7 +12,7 @@ const secret = () => {
     return value => {
         let cad = String(value);
         let aux = "";
-        
+
         if (cad) {
             for(let i =0 ;i < cad.length; i++){
                 if (i<cad.length-3) {
@@ -57,7 +57,7 @@ function CardsController(Resource, Utils) {
     cc.reset = reset;
 
     getCards();
- 
+
 
     function getCards() {
         Resource.getCards(localStorage.getItem('token'))
@@ -73,7 +73,7 @@ function CardsController(Resource, Utils) {
         if (Utils.getInputsValidation(['account', 'type', 'balance', 'cardMask','label','pin','cvv','year', 'month'])) {
             cc.cardData.expires = `${cc.monthSelected.month }${cc.yearSelected.year}`;
             cc.cardData.type = cc.cardSelected.card;
-            
+
             Resource.createCard(localStorage.getItem('token'), cc.cardData)
             .then(function (res) {
                 getCards();
@@ -82,11 +82,11 @@ function CardsController(Resource, Utils) {
             })
             .catch(err=>{
                 cc.auxMessage = err.data.message;
-                
+
             });
         }else{
             cc.auxMessage = 'Please fill out all fields';
-            
+
             setTimeout(() => {
                 inputs.map(input => input.input.removeClass('alert-effect'));
             }, 500);
@@ -138,4 +138,3 @@ function CardsController(Resource, Utils) {
         ];
     }
 }
-
