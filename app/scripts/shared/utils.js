@@ -120,9 +120,6 @@ function Utils($window) {
     function validateFieldEmpty(field) {
         return /([^\s])/img.test(field);
     }
-<<<<<<< HEAD
-}
-=======
 
     function validateAccount(account) {
         return /^([0-9]{6}|[0-9]{16}|[0-9]{18})$/img.test(account);
@@ -144,4 +141,3 @@ function Utils($window) {
         return !isNaN(amount) && amount > 0;
     }
 }
->>>>>>> origin/dev
