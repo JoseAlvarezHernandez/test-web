@@ -89,7 +89,7 @@ function Resource($http, env) {
     }
 
     function getCards(token) {
-        let http = {
+        const http = {
             method: 'GET',
             url: `${env.api}accounts`,
             headers: {
@@ -102,7 +102,7 @@ function Resource($http, env) {
     }
 
     function createCard(token, data) {
-        let http = {
+        const http = {
             method: 'POST',
             url: `${env.api}accounts`,
             headers: {
