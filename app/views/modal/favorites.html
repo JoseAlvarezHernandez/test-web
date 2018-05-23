@@ -1,0 +1,75 @@
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">New Favorite</h4>
+      </div>
+      <form name="myForm" ng-submit="fc.addFavorite();">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Account:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="number" class="form-control" id="account" validates="empty,account" name="account" ng-model="fc.favorite.account"
+                placeholder="000000000000">
+            </div>
+          </div>
+
+          <div class="row mt-2 mt-2">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Alias:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="text" class="form-control" id="alias" validates="empty" name="alias" ng-model="fc.favorite.alias" placeholder="Alias">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Email:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="email" class="form-control" id="email" validates="empty,email" name="email" ng-model="fc.favorite.email" placeholder="sample@email.com">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Max amount:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="number" class="form-control" id="max_amount" validates="empty,amount" name="max_amount" ng-model="fc.favorite.max_amount"
+                placeholder="0">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Bank:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="text" class="form-control" id="bank" validates="empty,letters" name="bank" ng-model="fc.favorite.bank" placeholder="Piggy Bank">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <label>Name:</label>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <input type="text" class="form-control" id="name" validates="empty,letters" name="name" ng-model="fc.favorite.name" placeholder="First and last name">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <input type="submit" class="btn btn-success" data-dismiss="modal" ng-disabled="!fc.favorite.isValid" ng-click="fc.addFavorite();"
+            value="Accept" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

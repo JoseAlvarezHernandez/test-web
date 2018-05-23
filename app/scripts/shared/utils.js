@@ -30,7 +30,6 @@ function Utils($window) {
         } else {
             fields.forEach(function (field, key) {
                 const input = document.getElementById(field);
-
                 inputs.push({ input, status: getValidate(input) });
             });
         }
@@ -54,6 +53,21 @@ function Utils($window) {
                     break;
                 case 'phone':
                     result = validatePhone(input.value);
+                    break;
+                case 'account':
+                    result = validateAccount(input.value);
+                    break;
+                case 'combo':
+                    result = validateComboBox(input.value);
+                    break;
+                case 'cvv':
+                    result = validateCvv(input.value);
+                    break;
+                case 'pin':
+                    result = validatePin(input.value);
+                    break;
+                case 'amount':
+                    result = validateAmount(input.value);
                     break;
             };
             return result;
@@ -104,5 +118,25 @@ function Utils($window) {
 
     function validateFieldEmpty(field) {
         return /([^\s])/img.test(field);
+    }
+
+    function validateAccount(account) {
+        return /^([0-9]{6}|[0-9]{16}|[0-9]{18})$/img.test(account);
+    }
+
+    function validateComboBox(value) {
+        return value !== 'A99';
+    }
+
+    function validateCvv(cvv) {
+        return /^([0-9]{3})$/img.test(cvv);
+    }
+
+    function validatePin(pin) {
+        return /^([0-9]{4})$/img.test(pin);
+    }
+
+    function validateAmount(amount) {
+        return !isNaN(amount) && amount > 0;
     }
 }

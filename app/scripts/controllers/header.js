@@ -46,13 +46,9 @@ function HeaderController($scope, $window) {
     //functions
     hc.logout = logout;
 
-    function sendTo(path) {
-        $window.location.href = `#!/${path}`;
-    }
-
     function logout() {
         hc.isLogged = false;
         localStorage.clear();
-        $window.location.href = '#!/';
+        $window.location.href = '/';
     }
 }

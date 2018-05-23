@@ -6,57 +6,60 @@
                 <h4 class="modal-title">Transaction</h4>
             </div>
             <div class="modal-body">
+                <form name="myForm" ng-model="tc.myForm" ng-submit="tc.getAccountUser();">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Account:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <select class="form-control" name="selected" id="selected" validates="empty,combo" ng-model="tc.transactions.selected" ng-options="item as (item.label + ' - ' + (item.balance | currency)) for item in tc.items track by item.account">
+                            
+                        </select>
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>Account:{{tc.selected}}</label>
+                    <div class="row mt-2 mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Destination account:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" id="desAccount" validates="empty,account" name="desAccount" ng-model="tc.transactions.destAccount" placeholder="000000000000">
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <select class="form-control" ng-model="tc.selected" ng-options="item as item.label for item in tc.items track by item.account"></select>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>Destination account:</label>
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>CVV:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="password" class="form-control" validates="empty,cvv" id="cvv" name="cvv" ng-model="tc.transactions.cvv" placeholder="0000">
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="000000000000">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>CVV:</label>
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>PIN:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="password" class="form-control" id="pin" validates="empty,pin" name="pin" ng-model="tc.transactions.pin" placeholder="****">
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0000">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>PIN:</label>
+                    <div class="row mt-2">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <label>Detail:</label>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" class="form-control" validates="empty" id="detail" name="detail" ng-model="tc.transactions.detail" placeholder="Detail">
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="****">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <label>Detail:</label>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Detail">
-                    </div>
-                </div>
-
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success">Confirm</button>
+                <input type="submit" class="btn btn-success" data-dismiss="modal" ng-disabled="!tc.transactions.isValid" value="Accept" />
             </div>
+            </form>
         </div>
     </div>
 </div>
