@@ -1,8 +1,29 @@
 'use strict';
 
+const secret = () => {
+    return value => {
+        let cad = String(value);
+        let aux = "";
+
+        if (cad) {
+            for(let i =0 ;i < cad.length; i++){
+                if (i<cad.length-3) {
+                    aux +="*";
+                }else{
+                    aux += cad[i];
+                }
+            }
+            return aux;
+        }else{
+            return value;
+        }
+    };
+  };
+
 angular
     .module('moneyWeb')
-    .factory('Utils', Utils);
+    .factory('Utils', Utils)
+    .filter('secret', secret);
 
 Utils.$inject = ['$window'];
 
