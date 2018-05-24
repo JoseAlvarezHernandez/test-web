@@ -20,6 +20,10 @@ function routes($routeProvider, $locationProvider) {
             templateUrl: 'views/favorites.html',
             controller: 'FavoritesController as fc',
         })
+        .when('/cards', {
+            templateUrl: 'views/cards.html',
+            controller: 'CardsController as cc',
+        })
         .when('/transactions', {
             templateUrl: 'views/transactions.html',
             controller: 'TransactionsController as tc',

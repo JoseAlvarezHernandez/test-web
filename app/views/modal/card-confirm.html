@@ -1,0 +1,27 @@
+
+<!-- Modal -->
+<div class="modal fade" id="confirmCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title" id="exampleModalLabel">Confirm new account</h2>
+      </div>
+      <div class="modal-body">
+        <ul>
+            <li><strong> Account: </strong> {{cc.cardData.account}}</li>
+            <li><strong> Card mask: </strong>{{cc.cardData.cardMask}}</li>
+            <li><strong> Balance: </strong>{{cc.cardData.balance}}</li>
+            <li><strong> Card type: </strong>{{cc.cardData.type}}</li>
+            <li><strong> expires: </strong>{{cc.monthSelected.label}} {{cc.yearSelected.label}}</p>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cc.saveCard();">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
