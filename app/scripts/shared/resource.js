@@ -24,7 +24,7 @@ function Resource($http, env) {
     };
 
     function validateEmail(email) {
-        let http = {
+        const http = {
             method: 'GET',
             url: `${env.api}authentication/validate/${email}`,
             headers: {
@@ -36,7 +36,7 @@ function Resource($http, env) {
     }
 
     function login(username, password) {
-        let http = {
+        const http = {
             method: 'POST',
             url: `${env.api}authentication/login`,
             headers: {
@@ -52,7 +52,7 @@ function Resource($http, env) {
     }
 
     function registration(data) {
-        let http = {
+        const http = {
             method: 'POST',
             url: `${env.api}users`,
             headers: {

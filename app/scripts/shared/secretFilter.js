@@ -2,7 +2,7 @@ angular
     .module('moneyWeb')
     .filter('secret', function(){
         return value => {
-            let cad = String(value);
+            const cad = String(value);
             let aux = "";
     
             if (cad) {
